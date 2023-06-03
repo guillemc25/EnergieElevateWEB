@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="tipo_contenido"  content="text/html;" http-equiv="content-type" charset="utf-8">
   <title>EnergieElevate</title>
-  <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega este enlace al archivo CSS -->
+  <link rel="stylesheet" href="EstilosRegistro.css"> <!-- Agrega este enlace al archivo CSS -->
 </head>
 <body>
 
@@ -25,26 +26,26 @@
     </ul>
   </nav>
 
+
+<form action="Registro.php" method="POST">
+  <h2>Registrarte</h2>
+  <input name="nombre" type="text" placeholder="Nombre" value="">
+  <input name="nusuario" type="text" placeholder="Nombre de usuario" value="">
+  <input name="apellidos" type="text" placeholder="Apellidos" value="">
+  <input name="Celectronico" type="text" placeholder="Correo Electronico" value="">
+  <input name="contra" type="password" placeholder="Contraseña" value="">
+  <button type="submit">Registrarte</button>
+</form>
   <script>
     function redirectToForm() {
-      window.location.href = "FormularioInicioSesion.html";
+      window.location.href = "FormularioInicioSesion.php";
     }
 
     function redirectToRegistration() {
       window.location.href = "FormularioRegistro.html";
     }
   </script>
+ 
 
-<form>
-  <h2>Registrarte:</h2>
-  <input type="text" placeholder="Nombre">
-  <input type="text" placeholder="Nombre de usuario">
-  <input type="text" placeholder="Apellidos">
-  <input type="text" placeholder="Correo Electronico">
-  <input type="password" placeholder="Contraseña">
-  <div class="button-container">
-    <button type="submit">Registrarte</button>
-  </div>
-</form>
 </body>
 </html>

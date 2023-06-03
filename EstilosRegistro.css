@@ -1,5 +1,5 @@
- /* Estilos para el menú de navegación */
- nav {
+/* Estilos para el menú de navegación */
+nav {
     background-color: blue; /* Cambia el color de fondo a azul */
     padding: 10px;
   }
@@ -69,7 +69,6 @@
     margin-right: 50px; /* Ajusta el margen derecho según tus necesidades */
   }
 
- 
   /* Estilos para el formulario */
 
 form {
@@ -77,14 +76,14 @@ form {
   flex-direction: column;
   align-items: center;
   width: 350px;
-  height: 200px;
+
   margin: 0 auto;
   margin-top: 100px;
   background-color: #fff;
   border-radius: 8px;
-  
+  box-shadow: 0 2px 5px rgba(219, 212, 212, 0.1);
   padding: 50px;
-  border: 1px solid #c7bdbd; /* Agrega un borde alrededor del formulario */
+  border: 1px solid #d1caca; /* Agrega un borde alrededor del formulario */
 }
 
 form h2 {
