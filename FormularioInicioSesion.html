@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EnergieElevate</title>
+  <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
+</head>
+<body>
+
+  <!-- Agrega el logo y los botones antes del menú -->
+  <header>
+    <div>
+      <a href="Inicio.html"><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
+    </div>
+    <div>
+      <button onclick="redirectToForm()" type="button">Inicio de Sesión</button>
+      <button onclick="redirectToRegistration()"type="button">Registro</button>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="Inicio.html">MI PAGINA DE INICIO</a></li>
+      <li><a href="#">ALIMENTOS</a></li>
+      <li><a href="#">EJERCICIO</a></li>
+    </ul>
+  </nav>
+
+  <!-- Agrega el formulario aquí -->
+  <form>
+    <h2>Inicio de Sesión:</h2>
+    <input type="text" placeholder="Nombre de usuario">
+    <input type="password" placeholder="Contraseña">
+    <div class="button-container">
+      <button type="submit">Iniciar Sesión</button>
+    </div>
+  </form>
+
+  <script>
+    function redirectToForm() {
+      window.location.href = "FormularioInicioSesion.html";
+    }
+
+    function redirectToRegistration() {
+      window.location.href = "FormularioRegistro.html";
+    }
+  </script>
+</body>
+</html>

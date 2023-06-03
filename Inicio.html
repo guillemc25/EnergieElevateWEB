@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EnergieElevate</title>
+  <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega este enlace al archivo CSS -->
+ <!-- Vincula el archivo JavaScript <script src="ScriptInicioSesion.js"></script> -->
+</head>
+<body>
+
+     <!-- Agrega el logo y los botones antes del menú -->
+  <header>
+    <div>
+        <a href="Inicio.html"><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
+    </div>
+    <div>
+        <button onclick="redirectToForm()" type="button">Inicio de Sesión</button>
+        <button onclick="redirectToRegistration()"type="button">Registro</button>
+    </div>
+  </header>
+  <nav>
+    <ul>
+        <li><a href="Inicio.html">MI PAGINA DE INICIO</a></li>
+      <li><a href="#">ALIMENTOS</a></li>
+      <li><a href="#">EJERCICIO</a></li>
+    </ul>
+  </nav>
+
+
+  <script>
+    function redirectToForm() {
+      window.location.href = "FormularioInicioSesion.html";
+    }
+
+    function redirectToRegistration() {
+      window.location.href = "FormularioRegistro.html";
+    }
+  </script>
+</body>
+</html>
