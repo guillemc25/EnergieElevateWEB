@@ -50,7 +50,7 @@ h2 {
      <!-- Agrega el logo y los botones antes del menú -->
   <header>
     <div>
-        <a href="Inicio.php"><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
+        <a><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
     </div>
     <div>
     

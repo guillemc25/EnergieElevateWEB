@@ -36,7 +36,7 @@
   <!-- Agrega el logo y los botones antes del menú -->
   <header>
     <div>
-    <a href="Inicio.php" class="logo"><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
+    <a  class="logo"><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
     </div>
     <div>
     
