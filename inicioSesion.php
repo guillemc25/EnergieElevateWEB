@@ -15,28 +15,29 @@ if ($conn->connect_error) {
 }
 
 // Verificar si se ha enviado el formulario de inicio de sesión
-
-    $NombreUsuario = $_POST['nusuario']; // Reemplaza 'username' con el nombre del campo del formulario
-    $password = $_POST['contra']; // Reemplaza 'password' con el nombre del campo del formulario
+if (isset($_POST['NombreUsuario']) && isset($_POST['contra'])) {
+    $NombreUsuario = $_POST['NombreUsuario']; // Reemplaza 'NombreUsuario' con el nombre del campo del formulario
+    $password = $_POST['contra']; // Reemplaza 'contra' con el nombre del campo del formulario
 
     // Consulta para verificar las credenciales del usuario
     $sql = "SELECT * FROM Usuario WHERE Usuario = '$NombreUsuario' AND Contraseña = '$password'";
     $result = $conn->query($sql);
 
-    if ($result->fetch_assoc()) {
+    if ($result->num_rows > 0) {
         // Inicio de sesión exitoso
-        $_SESSION['nusuario'] = $username;
-        echo "<script>alert('Inicio de sesión exitoso'); window.location.href = 'inicio.html';</script>";
+        $_SESSION['NombreUsuario'] = $NombreUsuario;
+        header("Location: MiPaginaInicio.php"); //redirige a la págian principal
+     
         exit;
     } else {
         // Credenciales inválidas
-        echo "<script>alert('Credenciales inválidas'); window.location.href = 'FormularioInicioSesion.html';</script>";
+        
+        header("Location: FormularioInicioSesion.php"); // Redirige al formulario de inicio de sesión
         exit;
     }
-
+}
 
 // Cerrar la conexión
 $conn->close();
-
-
 ?>
+

@@ -4,23 +4,39 @@
   <meta name="tipo_contenido"  content="text/html;" http-equiv="content-type" charset="utf-8">
   <title>EnergieElevate</title>
   <link rel="stylesheet" href="EstilosRegistro.css"> <!-- Agrega este enlace al archivo CSS -->
+
+  <style>
+    .btnInicioSesion {
+      margin-right: 200px;
+    }
+
+    .btnRegistro {
+      margin-right: 200px;
+    }
+
+    .user {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    </style>
 </head>
 <body>
 
   <!-- Agrega el logo y los botones antes del menú -->
   <header>
     <div>
-      <a href="Inicio.html"><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
+      <a href="Inicio.php"><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
     </div>
     <div>
-      <button onclick="redirectToForm()" type="button">Inicio de Sesión</button>
-      <button onclick="redirectToRegistration()" type="button">Registro</button>
+      
+    <button class="btnInicioSesion" onclick="redirectToForm()" type="button">Inicio de Sesión</button>
+      <button class="btnRegistro" onclick="redirectToRegistration()"type="button">Registro</button>
     </div>
   </header>
 
   <nav>
     <ul>
-      <li><a href="Inicio.html">MI PAGINA DE INICIO</a></li>
+      >
       <li><a href="#">ALIMENTOS</a></li>
       <li><a href="#">EJERCICIO</a></li>
     </ul>
@@ -35,6 +51,7 @@
   <input name="Celectronico" type="text" placeholder="Correo Electronico" value="">
   <input name="contra" type="password" placeholder="Contraseña" value="">
   <button type="submit">Registrarte</button>
+  <span class="user">¿Ya eres usuario?, <a href="FormularioInicioSesion.php">Iniciar Sesión</a></span>
 </form>
   <script>
     function redirectToForm() {
@@ -42,7 +59,7 @@
     }
 
     function redirectToRegistration() {
-      window.location.href = "FormularioRegistro.html";
+      window.location.href = "FormularioRegistro.php";
     }
   </script>
  

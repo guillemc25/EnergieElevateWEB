@@ -1,77 +1,77 @@
  /* Estilos para el menú de navegación */
- nav {
-    background-color: blue; /* Cambia el color de fondo a azul */
-    padding: 10px;
-  }
+nav {
+  background-color: blue;
+  padding: 10px;
+  margin-bottom: 20px;
+}
 
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
 
-  nav ul li {
-    display: inline;
-    margin-right: 10px;
-  }
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
 
-  nav ul li a {
-    text-decoration: none;
-    color: white; /* Cambia el color del texto a blanco */
-    padding: 5px;
-    font-weight: bold; 
-  }
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+  font-weight: bold;
+}
 
-  nav ul li a:hover {
-    background-color: #333;
-    color: #fff;
-  }
+nav ul li a:hover {
+  background-color: #333;
+  color: #fff;
+}
 
-  header {
-    display: flex; /* Activa el modelo de diseño flexbox */
-    justify-content: space-between; /* Distribuye los elementos horizontalmente con espacio entre ellos */
-    align-items: center; /* Centra verticalmente los elementos */
-    padding: 10px;
-    background-color: #f2f2f2;
-  }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+}
 
-  header img {
-    width: 100px; /* Ajusta el ancho del logo según tus necesidades */
-     height: auto; /* Mantiene la proporción de aspecto original del logo */
-    margin-right: 5px; /* Agrega un espacio entre el logo y los botones */
-  }
+header img {
+  width: 120px;
+  height: auto;
+  margin-right: 5px;
+}
 
-  header button {
-    margin-left: 10px; /* Agrega un espacio entre los botones */
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 8px;
-    background-color: #3498db;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+header button {
+  margin-left: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 8px;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  header button:hover {
-    background-color: #2980b9;
-  }
-  
-  header button:first-child {
-    margin-right: 10px;
-  }
+header button:hover {
+  background-color: #2980b9;
+}
 
-  header div {
-    margin-right: 50px; /* Ajusta el margen derecho según tus necesidades */
-  }
+header button:first-child {
+  margin-right: 10px;
+}
 
- 
-  /* Estilos para el formulario */
+header div {
+  margin-right: 50px;
+  margin-left: 500px;
+}
 
+/* Estilos para el formulario */
 form {
   display: flex;
   flex-direction: column;
@@ -82,9 +82,8 @@ form {
   margin-top: 100px;
   background-color: #fff;
   border-radius: 8px;
-  
   padding: 50px;
-  border: 1px solid #c7bdbd; /* Agrega un borde alrededor del formulario */
+  border: 1px solid #c7bdbd;
 }
 
 form h2 {
@@ -113,4 +112,19 @@ form button[type="submit"]:hover {
   background-color: #2980b9;
 }
 
-  
+/* Estilos para las imágenes */
+.image-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  margin-top: 100px;
+}
+
+.image-container img {
+  width: 20%;
+  margin-right: 20px;
+}
+.btnInicioSesion {
+  margin-right: 200px;
+}
+

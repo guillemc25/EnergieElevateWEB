@@ -25,7 +25,8 @@ $sql = "INSERT INTO Usuario (Nombre, Apellidos, Usuario, Correo_Electronico, Con
 
 // Ejecutar la consulta
 if ($conn->query($sql) === TRUE) {
-    echo "<script>; window.location.href = 'inicio.html'</script>";
+    header("Location: FormularioInicioSesion.php"); // Redirige al formulario de inicio de sesión
+    exit;
 } else {
     echo "<script>alert('Error al registrar el usuario: " . $conn->error . "');</script>";
 }
