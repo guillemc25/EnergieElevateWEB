@@ -48,8 +48,7 @@
 
     .contenedor {
       
-      margin-right: 250px;
-  margin-left: 100px;
+      
   justify-content: center;
     }
 
@@ -57,6 +56,7 @@
       background-color: #E0E0E0;
       padding: 100px;
       margin-top: 20px;
+      margin-left: 100px;
     }
 
     .resumen-encuadro {
@@ -70,6 +70,8 @@
       margin-top: 10px;
       padding: 1px;
       padding-left: 20px;
+      margin-right: 250px;
+  margin-left: 100px;
       
     }
 
@@ -80,6 +82,8 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 50px;
+      margin-right: 250px;
+  margin-left: 100px;
       padding: 50px;
      
     }
