@@ -48,7 +48,7 @@
 
     .contenedor {
       
-      margin-right: 500px;
+      margin-right: 250px;
   margin-left: 100px;
   justify-content: center;
     }
@@ -80,7 +80,7 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 50px;
-      padding: 100px;
+      padding: 50px;
      
     }
 
@@ -92,7 +92,7 @@
 
     .calorias-consumidas {
       border-bottom: 2px solid #ccc;
-      margin-right: 300px;
+      margin-right: 200px;
       
     }
 
@@ -123,7 +123,7 @@
       font-weight: bold;
       color: #333;
       margin-top: 50px;
-      margin-left: 30px;
+      
     }
 
     .btn-ejercicio,

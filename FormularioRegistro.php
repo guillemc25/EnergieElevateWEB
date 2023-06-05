@@ -3,7 +3,7 @@
 <head>
   <meta name="tipo_contenido"  content="text/html;" http-equiv="content-type" charset="utf-8">
   <title>EnergieElevate</title>
-  <link rel="stylesheet" href="EstilosRegistro.css"> <!-- Agrega este enlace al archivo CSS -->
+  <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega este enlace al archivo CSS -->
 
   <style>
     .btnInicioSesion {
@@ -36,7 +36,7 @@
 
   <nav>
     <ul>
-      >
+      
       <li><a href="#">ALIMENTOS</a></li>
       <li><a href="#">EJERCICIO</a></li>
     </ul>
