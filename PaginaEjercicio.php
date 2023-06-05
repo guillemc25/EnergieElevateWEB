@@ -223,37 +223,7 @@
     </ul>
   </nav>
 
-  <div class="contenedor">
-  <div class="resumen-diario-container"></div>
   
-  <div class="tu-resumen-diario">
-    <h2>Tu resumen diario</h2>
-  </div>
-  
-  <div class="resumen-diario">
-    <div class="calorias-consumidas-info">
-      <div class="calorias-consumidas">
-      <p class="titulo">Calorías consumidas</p>
-      <p class="cantidad">0</p>
-
-      </div>
-      <div class="calorias-consumidas">
-      <p class="titulo">Calorías quemadas</p>
-      <p class="cantidad">0</p>
-
-      </div>
-      <div class="info-alimentos-ejercicio">
-        <p class="numEjercicios">0</p>
-        <p>Ejercicios</p>
-        <p class="NumAlimentos">0</p>
-        <p>Alimentos</p>
-      </div>
-    </div>
-    <div class="botones-acciones">
-      <button onclick="redirectToEjercicio()" class="btn-ejercicio">Añadir Ejercicio</button>
-      <button onclick=" redirectToAlimentacion()" class="btn-alimentos">Añadir Alimentos</button>
-    </div>
-  </div>
   
   
   </div>

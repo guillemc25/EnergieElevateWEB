@@ -33,12 +33,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  background-color: #f2f2f2;
+  padding: 5px;
+  background-color: white;
 }
 
 header img {
-  width: 120px;
+  width: 100px;
   height: auto;
   margin-right: 5px;
 }
