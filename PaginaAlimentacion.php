@@ -1,6 +1,13 @@
+<?php
+session_start();
+
+// Resto del código de tu archivo PaginaAlimentacion.php
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
+
   <meta name="tipo_contenido"  content="text/html;" http-equiv="content-type" charset="utf-8">
   <title>EnergieElevate</title>
   <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
@@ -183,6 +190,68 @@
   background-color: #ccc;
 }
 
+table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+}
+
+table td,
+table th {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+.table-container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.tablaAlimentacion {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tablaAlimentacion td,
+.tablaAlimentacion th {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.tablaAlimentacion th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: center;
+}
+
+.add_food {
+  text-decoration: none;
+  color: blue;
+}
+
+.add_food:hover {
+  text-decoration: underline;
+}
+
+.nutrient-column{
+  background: #00548F;
+    color: #fff;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #fff;
+    font-size: 12px;
+    font-weight: normal;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+
+
 
 
 
@@ -199,7 +268,7 @@
     </div>
     <div class="user-container">
     <?php
-      session_start();
+      
       if (isset($_SESSION['NombreUsuario'])) {
         $username = $_SESSION['NombreUsuario'];
         echo "<span class='username'>Hola, $username</span>";
@@ -223,6 +292,177 @@
     </ul>
   </nav>
 
+  <div class="table-container">
+    <table class="tablaAlimentacion">
+    <colgroup>
+        <col class="col-1">
+          <col class="col-2">
+          <col class="col-2">
+          <col class="col-2">
+          <col class="col-2">
+          <col class="col-2">
+          <col class="col-2">
+        <col class="col-8">
+      </colgroup>
+
+      
+
+      <thead>
+      <tr class="meal_header">
+
+        <td class="first ">Desayuno</td>
+        <td class=" nutrient-column">
+        Calorías
+        <div class="subtitle">kcal</div>
+        </td>
+        <td class=" nutrient-column">
+        Carbohidratos
+        <div class="subtitle">g</div>
+        </td>
+        <td class="nutrient-column">
+        Grasas
+        <div class="subtitle">g</div>
+        </td>
+        <td class=" nutrient-column">
+        Proteínas
+        <div class="subtitle">g</div>
+        </td>
+        <td class="nutrient-column">
+        Sodio
+        <div class="subtitle">mg</div>
+        </td>
+        <td class="nutrient-column">
+        Azúcar
+        <div class="subtitle">g</div>
+      </td>
+  </tr>
+      </thead>
+
+      <tr>
+
+      <td class="first alt" style="z-index: 10">
+
+              <a class="add_food" href="/es/food/add_to_diary?meal=0">Añadir alimento</a>
+
+          </td>
+          <td>&nbsp;</td>
+          <td>
+                <span class="macro-value">&nbsp;</span>
+                <span class="macro-percentage">
+                    &nbsp;
+                </span>
+              </td>
+          <td>
+                <span class="macro-value">&nbsp;</span>
+                <span class="macro-percentage">
+                    &nbsp;
+                </span>
+          </td>
+          <td>
+                <span class="macro-value">&nbsp;</span>
+                <span class="macro-percentage">
+                    &nbsp;
+                </span>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+      </tr>
+      <tr class="meal_header">
+
+            <td class="first alt">Almuerzo</td>
+          </tr>
+          <tr>
+
+<td class="first alt" style="z-index: 10">
+
+        <a class="add_food" href="/es/food/add_to_diary?meal=0">Añadir alimento</a>
+
+    </td>
+    <td>&nbsp;</td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+        </td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+    </td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+<tr class="meal_header">
+
+            <td class="first alt">Merienda</td>
+          </tr>
+          <td class="first alt" style="z-index: 10">
+
+<a class="add_food" href="/es/food/add_to_diary?meal=0">Añadir alimento</a>
+
+</td>    
+<td>&nbsp;</td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+        </td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+    </td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>    
+
+    <tr class="meal_header">
+
+            <td class="first alt">Cena</td>
+          </tr>
+          <td class="first alt" style="z-index: 10">
+
+<a class="add_food" href="/es/food/add_to_diary?meal=0">Añadir alimento</a>
+
+</td>    
+<td>&nbsp;</td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+        </td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+    </td>
+    <td>
+          <span class="macro-value">&nbsp;</span>
+          <span class="macro-percentage">
+              &nbsp;
+          </span>
+    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>   
+    
+    </table>
   
   
 
