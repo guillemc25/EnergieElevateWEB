@@ -294,7 +294,7 @@ session_start();
       <tbody>
         <tr class="bottom">
           <td class="first">
-            <a class="add_exercise" href="#">Añadir</a>
+            <a class="add_exercise" href="RegistroEjerciciosCardio.php">Añadir</a>
             <div class="quick_tools"></div>
           </td>
           <td class="content"></td>
@@ -326,7 +326,7 @@ session_start();
       <tbody>
         <tr class="bottom">
           <td class="first">
-            <a class="add_exercise" href="#">Añadir</a>
+            <a class="add_exercise" href="RegistroEjerciciosFuerza.php">Añadir</a>
           </td>
           <td class="content"></td>
           <td class="content"></td>
