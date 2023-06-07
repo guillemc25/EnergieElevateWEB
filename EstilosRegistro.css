@@ -51,14 +51,17 @@ nav {
     text-transform: uppercase;
     border: none;
     border-radius: 8px;
-    background-color: #3498db;
     color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
 
   header button:hover {
-    background-color: #2980b9;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
   }
   
   header button:first-child {
@@ -104,13 +107,17 @@ form button[type="submit"] {
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background-color: #3498db;
   color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  
   cursor: pointer;
 }
 
 form button[type="submit"]:hover {
-  background-color: #2980b9;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
   

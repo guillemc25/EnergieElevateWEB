@@ -52,14 +52,17 @@ header button {
   text-transform: uppercase;
   border: none;
   border-radius: 8px;
-  background-color: #3498db;
   color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 header button:hover {
-  background-color: #2980b9;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 header button:first-child {
@@ -70,6 +73,8 @@ header div {
   margin-right: 50px;
   margin-left: 50px;
 }
+
+
 
 /* Estilos para el formulario */
 form {
@@ -103,13 +108,16 @@ form button[type="submit"] {
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background-color: #3498db;
   color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
   cursor: pointer;
 }
 
 form button[type="submit"]:hover {
-  background-color: #2980b9;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 /* Estilos para las imágenes */
@@ -128,51 +136,3 @@ form button[type="submit"]:hover {
   margin-right: 200px;
 }
 
-table {
-  width: 100%;
-  margin-top: 30px;
-  border-collapse: collapse;
-}
-
-table td,
-table th {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
-
-table th {
-  background-color: #f2f2f2;
-}
-
-.table-container {
-  width: 80%;
-  margin: 20px auto;
-}
-
-.tablaAlimentacion {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.tablaAlimentacion td,
-.tablaAlimentacion th {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
-
-.tablaAlimentacion th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-  text-align: center;
-}
-
-.add_food {
-  text-decoration: none;
-  color: blue;
-}
-
-.add_food:hover {
-  text-decoration: underline;
-}

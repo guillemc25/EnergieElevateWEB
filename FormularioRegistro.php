@@ -8,10 +8,13 @@
   <style>
     .btnInicioSesion {
       margin-right: 200px;
+      
+
     }
 
     .btnRegistro {
       margin-right: 200px;
+    
     }
 
     .user {

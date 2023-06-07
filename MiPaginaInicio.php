@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+// Resto del código de tu archivo PaginaAlimentacion.php
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +29,9 @@
       padding: 5px 10px;
       border: none;
       border-radius: 4px;
-      background-color: #3498db;
-      color: #fff;
+       color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
       text-decoration: none;
       margin-right: 10px;
     }
@@ -173,7 +180,7 @@
       </div>
       <div class="user-container">
         <?php
-          session_start();
+         
           if (isset($_SESSION['NombreUsuario'])) {
             $username = $_SESSION['NombreUsuario'];
             echo "<span class='username'>Hola, $username</span>";

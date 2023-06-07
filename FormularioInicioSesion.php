@@ -17,10 +17,16 @@
     }
     .btnInicioSesion {
       margin-right: 200px;
+      color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
     }
 
     .btnRegistro {
       margin-right: 200px;
+      color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
     }
 
     .already-user {
@@ -50,8 +56,8 @@
   <nav>
     <ul>
       
-      <li><a href="#">ALIMENTOS</a></li>
-      <li><a href="#">EJERCICIO</a></li>
+      <li><a href="">ALIMENTOS</a></li>
+      <li><a href="">EJERCICIO</a></li>
     </ul>
   </nav>
 

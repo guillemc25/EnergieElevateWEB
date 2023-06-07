@@ -208,9 +208,15 @@ table th {
 }
 
 .table-container {
-  width: 80%;
-  margin: 20px auto;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 100px;
 }
+
+.smaller-table {
+  font-size: 14px;
+}
+
 
 .tablaAlimentacion {
   width: 100%;
@@ -232,7 +238,8 @@ table th {
 
 .add_food {
   text-decoration: none;
-  color: blue;
+  font-size: 16px;
+    color: #0072BF
 }
 
 .add_food:hover {
@@ -251,7 +258,18 @@ table th {
 }
 
 
+.meal_header .first{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.table-container table tr {
+  border-bottom: 1px solid #ccc;
+}
 
+.table-container table td {
+  border: none;
+}
 
 
 
@@ -293,7 +311,7 @@ table th {
   </nav>
 
   <div class="table-container">
-    <table class="tablaAlimentacion">
+    <table class="tablaAlimentacion smaller-table">
     <colgroup>
         <col class="col-1">
           <col class="col-2">
@@ -310,7 +328,7 @@ table th {
       <thead>
       <tr class="meal_header">
 
-        <td class="first ">Desayuno</td>
+        <td class="Desayuno">Desayuno</td>
         <td class=" nutrient-column">
         Calorías
         <div class="subtitle">kcal</div>
@@ -338,11 +356,11 @@ table th {
   </tr>
       </thead>
 
-      <tr>
+      <tr class="bottom">
 
       <td class="first alt" style="z-index: 10">
 
-              <a class="add_food" href="/es/food/add_to_diary?meal=0">Añadir alimento</a>
+              <a class="add_food" href="RegistroDesayuno.php">Añadir alimento</a>
 
           </td>
           <td>&nbsp;</td>
@@ -375,7 +393,7 @@ table th {
 
 <td class="first alt" style="z-index: 10">
 
-        <a class="add_food" href="/es/food/add_to_diary?meal=0">Añadir alimento</a>
+      <a class="add_food" href="RegistroComida.php">Añadir alimento</a>
 
     </td>
     <td>&nbsp;</td>
@@ -406,7 +424,7 @@ table th {
           </tr>
           <td class="first alt" style="z-index: 10">
 
-<a class="add_food" href="/es/food/add_to_diary?meal=0">Añadir alimento</a>
+          <a class="add_food" href="RegistroMerienda.php">Añadir alimento</a>
 
 </td>    
 <td>&nbsp;</td>
@@ -437,7 +455,7 @@ table th {
           </tr>
           <td class="first alt" style="z-index: 10">
 
-<a class="add_food" href="/es/food/add_to_diary?meal=0">Añadir alimento</a>
+          <a class="add_food" href="RegistroCena.php">Añadir alimento</a>
 
 </td>    
 <td>&nbsp;</td>
@@ -464,7 +482,7 @@ table th {
     
     </table>
   
-  
+  </div>
 
 
 

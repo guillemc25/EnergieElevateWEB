@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+// Resto del código de tu archivo PaginaAlimentacion.php
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +33,7 @@
 }
 
 .logout-button:hover {
-  background-color: #2980b9;
+  background-color: #3498db;
 }
 
 .separator {
@@ -40,46 +45,40 @@
 }
 
 .already-user {
-      margin-top: 10px;
-      font-size: 14px;
-    }
+  margin-top: 10px;
+  font-size: 14px;
+}
 
-  .contenedor {
+.contenedor {
   margin: 0 auto;
   width: 80%; /* Puedes ajustar el ancho según tus necesidades */
 }
 
+.resumen-diario-container {
+  background-color: #E0E0E0;
+  padding: 100px;
+  margin-top: 20px;
+  margin-right: 50px;
+  margin-left: 100px;
+}
 
-    .resumen-diario-container {
-      background-color: #E0E0E0;
-      padding: 100px;
-      margin-top: 20px;
-      margin-right: 50px;
-      margin-left: 100px;
-      
+.resumen-encuadro {
+  display: flex;
+}
 
-    }
-    .resumen-encuadro{
-      display: flex;
-      
-    
-    }
-    
+.tu-resumen-diario {
+  background-color: #0a5282;
+  font-family: "Inter", Helvetica, Arial, -apple-system, sans-serif;
+  color: white;
+  margin-top: 10px;
+  margin-right: 500px;
+  margin-left: 100px;
+  padding: 1px;
+  padding-left: 20px;
+  flex: 1;
+}
 
-    .tu-resumen-diario {
-      background-color: #0a5282;
-      font-family: "Inter",Helvetica,Arial,-apple-system,sans-serif;
-      color: white;
-      margin-top: 10px;
-      margin-right: 500px;
-      margin-left: 100px;
-      padding: 1px;
-      padding-left: 20px;
-      flex: 1;
-      
-    }
-   
-    .resumen-diario {
+.resumen-diario {
   display: flex;
   background-color: #E0E0E0;
   flex-direction: row;
@@ -94,7 +93,7 @@
 .calorias-consumidas-info {
   flex: 1;
   margin-left: 20px;
-  margin-top:0px;
+  margin-top: 0px;
   margin-right: 50px;
 }
 
@@ -103,18 +102,13 @@
   margin-left: 25px;
 }
 
-
 .calorias-consumidas .titulo {
   font-size: 24px;
   font-weight: bold;
   color: #333;
- 
-
-
 }
 
 .calorias-consumidas .cantidad {
- 
   color: rgb(133, 196, 0);
   font-weight: 700;
   font-size: 60px;
@@ -138,57 +132,115 @@
   margin-top: 50px;
   margin-left: 30px;
 }
-.NumEjercicios
-{
+
+.NumEjercicios {
   margin-left: 60px;
 }
-
 
 .btn-ejercicio,
 .btn-alimentos {
   display: inline-flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    position: relative;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    outline: 0px;
-    margin: 0px;
-    cursor: pointer;
-    user-select: none;
-    vertical-align: middle;
-    appearance: none;
-    text-decoration: none;
-    font-family: Inter, Helvetica, Arial, -apple-system, sans-serif;
-    font-weight: 500;
-    font-size: 0.8125rem;
-    line-height: 1.75;
-    min-width: 64px;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    border-radius: 4px;
-    padding: 8px 20px;
-    box-shadow: none;
-    letter-spacing: 0.015625rem;
-    color: rgb(102, 102, 102);
-    border: 1px solid rgb(210, 210, 210);
-    text-transform: capitalize;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0px;
+  margin: 0px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  text-decoration: none;
+  font-family: Inter, Helvetica, Arial, -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  min-width: 64px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border-radius: 4px;
+  padding: 8px 20px;
+  box-shadow: none;
+  letter-spacing: 0.015625rem;
+  color: rgb(102, 102, 102);
+  border: 1px solid rgb(210, 210, 210);
+  text-transform: capitalize;
 }
+
 
 .btn-ejercicio:hover,
 .btn-alimentos:hover {
   background-color: #ccc;
 }
 
+.table0 {
+  border-collapse: collapse;
+  width: 60%; /* Ajusta el ancho de la tabla según tus necesidades */
+  margin: 0 auto; /* Centra la tabla horizontalmente */
+}
+
+.table0 th,
+.table0 td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table0 .first .delete {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.table0 .alt {
+  background: #00548F;
+  color: #fff;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid #fff;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+  text-transform: capitalize;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
 
 
 
+.content {
+  border: none;
+}
 
+.EjerciciosCardiovasculares{
+  margin-top: 100px;
+}
 
-    </style>
+.EjerciciosFuerza{
+  margin-top: 100px;
+}
+
+.table0 .bottom td {
+      font-size: 16px;
+    }
+
+.add_exercise {
+     
+  color: #0072BF;
+      padding: 5px 10px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    
+
+</style>
 </head>
 <body>
 
@@ -199,7 +251,7 @@
     </div>
     <div class="user-container">
     <?php
-      session_start();
+      
       if (isset($_SESSION['NombreUsuario'])) {
         $username = $_SESSION['NombreUsuario'];
         echo "<span class='username'>Hola, $username</span>";
@@ -222,30 +274,70 @@
       <li><a href="PaginaEjercicio.php">EJERCICIO</a></li>
     </ul>
   </nav>
+  <div class="EjerciciosCardiovasculares">
+    <table class="table0" id="cardio-diary">
+      <colgroup>
+        <col class="col-1">
+        <col class="col-2">
+        <col class="col-2">
+        <col class="col-4">
+      </colgroup>
 
-  
-  
-  
+      <thead>
+        <tr>
+          <td class="first">Cardiovascular</td>
+          <td class="alt">Minutos</td>
+          <td class="alt">Calorías quemadas</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="bottom">
+          <td class="first">
+            <a class="add_exercise" href="#">Añadir</a>
+            <div class="quick_tools"></div>
+          </td>
+          <td class="content"></td>
+          <td class="content"></td>
+          <td class="delete"></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</div>
+
+  <div class="EjerciciosFuerza">
+    <table class="table0" id="cardio-diary">
+      <colgroup>
+        <col class="col-1">
+        <col class="col-2">
+        <col class="col-2">
+        <col class="col-4">
+      </colgroup>
+
+      <thead>
+        <tr>
+          <td class="first">Ejercicios de fuerza</td>
+          <td class="alt">Series</td>
+          <td class="alt">Repeticiones/Serie</td>
+          <td class="alt">Peso/Serie</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="bottom">
+          <td class="first">
+            <a class="add_exercise" href="#">Añadir</a>
+          </td>
+          <td class="content"></td>
+          <td class="content"></td>
+          <td class="delete"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   
-
-
-
-  <script>
-    function redirectToForm() {
-      window.location.href = "FormularioInicioSesion.php";
-    }
-
-    function redirectToRegistration() {
-      window.location.href = "FormularioRegistro.php";
-    }
-    function redirectToAlimentacion(){
-      window.location.href = "PaginaAlimentacion.php";
-    }
-    function redirectToEjercicio(){
-      window.location.href = "PaginaEjercicio.php";
-    }
-  </script>
+</div>
+</div>
 </body>
 </html>
