@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+require_once "conexion.php";
 // Resto del código de tu archivo PaginaAlimentacion.php
 ?>
 

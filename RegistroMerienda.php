@@ -1,7 +1,11 @@
-<?php
-session_start();
 
-// Resto del código de tu archivo PaginaAlimentacion.php
+<?php
+
+
+require_once "conexion.php";
+require_once "BuscarAlimentos.php";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +16,8 @@ session_start();
   <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
   <!-- Agrega el enlace al archivo de Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/css/bootstrap.min.css">
+  <script src="BuscarAlimentos.js"></script>
+  
   <style>
     /* Mantén tus estilos personalizados aquí */
 
@@ -128,11 +134,49 @@ session_start();
       list-style-type: none;
       border: 1px solid #ccc; /* Agrega el borde deseado */
       height: 200px;
+      padding: 10px; 
+      border: 1px solid #ccc;
+       white-space: nowrap;
+      margin-right: 5px;
+      overflow-x: scroll;
+       overflow-y: scroll;
+        margin-right: 5px;
     }
 
     #matching li {
-      margin-bottom: 10px;
+      display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  color: #0f73ab;
     }
+
+    #matching  span {
+      flex: 1;
+  margin-right: 10px;
+  
+}
+
+.nombre-alimento {
+  color: blue; /* Cambia el color del nombre del alimento a azul */
+  text-decoration: underline; /* Agrega subrayado al texto */
+  cursor: pointer; /* Cambia el cursor al estilo de un enlace */
+}
+
+.nombre-alimento:hover {
+  color: darkblue; /* Cambia el color al pasar el cursor por encima del nombre */
+}
+
+
+
+
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -171,12 +215,17 @@ session_start();
     <div class="Busqueda" style="text-align: center; margin-top: 20px;">
       <h1 class="main-title" style="max-width: 600px; margin: 0 auto;">Añadir alimento a Merienda</h1>
       <h1 class="secondary-title">Búsqueda en nuestra base de datos de alimentos por nombre:</h1>
+      
     </div>
 
     <div class="search-bar" style="margin-top: 50px; text-align: center;">
-      <input type="text" class="form-control search-input" placeholder="Buscar">
-      <button class="btn btn-primary search-button">Búsqueda</button>
+      <input type="text" class="search-input" placeholder="Buscar">
+      <button onclick="buscarAlimento()" class="search-button">Búsqueda</button>
+      
     </div>
+    <div id="loading-popup" style="display: none; margin-top: 10px; text-align: center;">
+    <h2>Buscando alimentos...</h2>
+  </div>
 
     <div class="block-4">
       <div id="sort-block">
@@ -184,11 +233,17 @@ session_start();
       </div>
       
     </div>
-    <div class="resultado" style="max-width: 600px;  margin: 0 auto;">
-        <ul id="matching" style="padding: 10px; border: 1px solid #ccc;">
-          <li  style="border-bottom: 1px solid #ccc;"><p>No se encontraron resultados.</p></li>
-        </ul>
-      </div>
+    <div class="resultado" style="max-width: 600px; margin: 0 auto;">
+  
+    <ul id="matching" >
+      <li style="border-bottom: 1px solid #ccc;">Resultados de la Busqueda</li>
+     
+         
+      
+    </ul>
+  
+</div>
+
 
     </div>
     
@@ -196,19 +251,13 @@ session_start();
   </div>
 
   <script>
-    function redirectToForm() {
-      window.location.href = "FormularioInicioSesion.php";
-    }
+  
 
-    function redirectToRegistration() {
-      window.location.href = "FormularioRegistro.php";
-    }
-    function redirectToAlimentacion() {
-      window.location.href = "PaginaAlimentacion.php";
-    }
-    function redirectToEjercicio() {
-      window.location.href = "PaginaEjercicio.php";
-    }
+
+    
+    
+
+  
   </script>
 </body>
 </html>

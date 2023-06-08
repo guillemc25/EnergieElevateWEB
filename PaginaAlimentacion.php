@@ -345,14 +345,7 @@ table th {
         Proteínas
         <div class="subtitle">g</div>
         </td>
-        <td class="nutrient-column">
-        Sodio
-        <div class="subtitle">mg</div>
-        </td>
-        <td class="nutrient-column">
-        Azúcar
-        <div class="subtitle">g</div>
-      </td>
+      
   </tr>
       </thead>
 
