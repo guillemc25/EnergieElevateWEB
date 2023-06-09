@@ -16,7 +16,7 @@ require_once "BuscarAlimentos.php";
   <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
   <!-- Agrega el enlace al archivo de Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/css/bootstrap.min.css">
-  <script src="Alimentos.js"></script>
+  <script src="BuscarAlimentos.js"></script>
   
   <style>
     /* Mantén tus estilos personalizados aquí */
