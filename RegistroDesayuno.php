@@ -7,7 +7,6 @@ require_once "BuscarAlimentos.php";
 
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,8 @@ require_once "BuscarAlimentos.php";
   <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
   <!-- Agrega el enlace al archivo de Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/css/bootstrap.min.css">
-  <script src="BuscarAlimentos.js"></script>
+
+
   
   <style>
     /* Mantén tus estilos personalizados aquí */
@@ -252,6 +252,102 @@ require_once "BuscarAlimentos.php";
 
   <script>
   
+  // Función para realizar la búsqueda y mostrar los resultados en el HTML
+function buscarAlimento() {
+  // Obtener el término de búsqueda del input
+  var searchTerm = document.querySelector('.search-input').value;
+
+  // Mostrar el mensaje emergente de búsqueda en progreso
+  var loadingPopup = document.getElementById('loading-popup');
+  loadingPopup.style.display = 'block';
+
+  // Realizar la petición al archivo PHP utilizando AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'RegistroDesayuno.php?searchTerm=' + searchTerm, true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      // Ocultar el mensaje emergente de búsqueda en progreso
+      loadingPopup.style.display = 'none';
+
+      // Parsear la respuesta JSON
+      var resultados = JSON.parse(xhr.responseText);
+
+      // Obtener la lista donde se mostrarán los resultados
+      var matchingList = document.getElementById('matching');
+
+      // Limpiar la lista antes de mostrar los nuevos resultados
+      matchingList.innerHTML = '';
+
+      // Mostrar los resultados en la lista
+      if (resultados.length > 0) {
+        // Mostrar los resultados
+        for (var i = 0; i < resultados.length; i++) {
+          
+            var listItem = document.createElement('li');
+
+            var nombreAlimento = document.createElement('span');
+            nombreAlimento.textContent = resultados[i].NombreAlimento;
+            listItem.appendChild(nombreAlimento);
+            nombreAlimento.classList.add('nombre-alimento');
+
+            nombreAlimento.addEventListener('click', (function(alimento) {
+              return function() {
+              actualizarTabla(alimento);
+              };
+            })(resultados[i]));
+
+
+            var detallesAlimento = document.createElement('div');
+            detallesAlimento.classList.add('detalles-alimento');
+
+            var calorias = document.createElement('span');
+            calorias.textContent = 'Calorías: ' + resultados[i].Calorias_100g;
+            detallesAlimento.appendChild(calorias);
+
+            var proteinas = document.createElement('span');
+            proteinas.textContent = 'Proteínas: ' + resultados[i].Proteinas_100g;
+            detallesAlimento.appendChild(proteinas);
+
+            var grasas = document.createElement('span');
+            grasas.textContent = 'Grasas: ' + resultados[i].Grasas_100g;
+            detallesAlimento.appendChild(grasas);
+
+            var carbohidratos = document.createElement('span');
+            carbohidratos.textContent = 'Carbohidratos: ' + resultados[i].Carbohidratos_100g;
+            detallesAlimento.appendChild(carbohidratos);
+
+            listItem.appendChild(detallesAlimento);
+            matchingList.appendChild(listItem);
+          
+        }
+      } else {
+        var listItem = document.createElement('li');
+        listItem.textContent = 'No se encontraron resultados.';
+        matchingList.appendChild(listItem);
+      }
+    }
+  };
+  xhr.send();
+}
+
+function actualizarTabla(alimento) {
+  console.log('actualizarTabla:', alimento);
+
+  // Guardar la información en el localStorage
+var alimentoSeleccionado = {
+  nombre: alimento.NombreAlimento,
+  calorias: alimento.Calorias_100g,
+  carbohidratos: alimento.Carbohidratos_100g,
+  grasas: alimento.Grasas_100g,
+  proteinas: alimento.Proteinas_100g
+};
+localStorage.setItem('alimentoSeleccionado', JSON.stringify(alimentoSeleccionado));
+
+  // Redireccionar a la página de alimentación
+  window.location.href = 'PaginaAlimentacion.php';
+}
+
+
 
 
     

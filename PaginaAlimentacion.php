@@ -11,6 +11,7 @@ session_start();
   <meta name="tipo_contenido"  content="text/html;" http-equiv="content-type" charset="utf-8">
   <title>EnergieElevate</title>
   <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
+  <script src="BuscarAlimentos.js"></script>
   <style>
 
 .user-container {
@@ -311,7 +312,7 @@ table th {
   </nav>
 
   <div class="table-container">
-    <table class="tablaAlimentacion smaller-table">
+    <table class="tablaAlimentacion ">
     <colgroup>
         <col class="col-1">
           <col class="col-2">
@@ -349,34 +350,36 @@ table th {
   </tr>
       </thead>
 
-      <tr class="bottom">
+    <tbody class="Body">
+
+    <tr class="bottom">
 
       <td class="first alt" style="z-index: 10">
 
               <a class="add_food" href="RegistroDesayuno.php">Añadir alimento</a>
 
           </td>
-          <td>&nbsp;</td>
+          <td></td>
           <td>
                 <span class="macro-value">&nbsp;</span>
                 <span class="macro-percentage">
-                    &nbsp;
+                    
                 </span>
               </td>
           <td>
-                <span class="macro-value">&nbsp;</span>
+                <span class="macro-value"></span>
                 <span class="macro-percentage">
-                    &nbsp;
+                    
                 </span>
           </td>
           <td>
-                <span class="macro-value">&nbsp;</span>
+                <span class="macro-value"></span>
                 <span class="macro-percentage">
-                    &nbsp;
+                    
                 </span>
           </td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
       </tr>
       <tr class="meal_header">
 
@@ -389,27 +392,27 @@ table th {
       <a class="add_food" href="RegistroComida.php">Añadir alimento</a>
 
     </td>
-    <td>&nbsp;</td>
+    <td></td>
     <td>
-          <span class="macro-value">&nbsp;</span>
+          <span class="macro-value"></span>
           <span class="macro-percentage">
-              &nbsp;
+            
           </span>
         </td>
     <td>
           <span class="macro-value">&nbsp;</span>
           <span class="macro-percentage">
-              &nbsp;
+              
           </span>
     </td>
     <td>
-          <span class="macro-value">&nbsp;</span>
+          <span class="macro-value"></span>
           <span class="macro-percentage">
-              &nbsp;
+              
           </span>
     </td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td></td>
+    <td></td>
 </tr>
 <tr class="meal_header">
 
@@ -420,27 +423,27 @@ table th {
           <a class="add_food" href="RegistroMerienda.php">Añadir alimento</a>
 
 </td>    
-<td>&nbsp;</td>
+<td></td>
     <td>
-          <span class="macro-value">&nbsp;</span>
+          <span class="macro-value"></span>
           <span class="macro-percentage">
-              &nbsp;
+              
           </span>
         </td>
     <td>
-          <span class="macro-value">&nbsp;</span>
+          <span class="macro-value"></span>
           <span class="macro-percentage">
-              &nbsp;
+              
           </span>
     </td>
     <td>
-          <span class="macro-value">&nbsp;</span>
+          <span class="macro-value"></span>
           <span class="macro-percentage">
-              &nbsp;
+              
           </span>
     </td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>    
+    <td></td>
+    <td></td>    
 
     <tr class="meal_header">
 
@@ -451,27 +454,29 @@ table th {
           <a class="add_food" href="RegistroCena.php">Añadir alimento</a>
 
 </td>    
-<td>&nbsp;</td>
+<td></td>
     <td>
-          <span class="macro-value">&nbsp;</span>
+          <span class="macro-value"></span>
           <span class="macro-percentage">
-              &nbsp;
+              
           </span>
         </td>
     <td>
-          <span class="macro-value">&nbsp;</span>
+          <span class="macro-value"></span>
           <span class="macro-percentage">
-              &nbsp;
+              
           </span>
     </td>
     <td>
-          <span class="macro-value">&nbsp;</span>
+          <span class="macro-value"></span>
           <span class="macro-percentage">
-              &nbsp;
+              
           </span>
     </td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>   
+    <td></td>
+    <td></td>   
+    </tbody>
+      
     
     </table>
   
@@ -480,6 +485,41 @@ table th {
 
 
   <script>
+
+     // Obtener el elemento con la clase "tablaAlimentacion"
+  var tablaAlimentacion = document.querySelector('.tablaAlimentacion tbody');
+
+// Obtener la información del localStorage
+var alimentoSeleccionado = localStorage.getItem('alimentoSeleccionado');
+if (alimentoSeleccionado) {
+  alimentoSeleccionado = JSON.parse(alimentoSeleccionado);
+
+  // Crear una nueva fila con los datos del alimento seleccionado
+  var nuevaFila = document.createElement('tr');
+  var celdaNombre = document.createElement('td');
+  celdaNombre.innerHTML = alimentoSeleccionado.nombre;
+  var celdaCalorias = document.createElement('td');
+  celdaCalorias.innerHTML = alimentoSeleccionado.calorias;
+  var celdaCarbohidratos = document.createElement('td');
+  celdaCarbohidratos.innerHTML = alimentoSeleccionado.carbohidratos;
+  var celdaGrasas = document.createElement('td');
+  celdaGrasas.innerHTML = alimentoSeleccionado.grasas;
+  var celdaProteinas = document.createElement('td');
+  celdaProteinas.innerHTML = alimentoSeleccionado.proteinas;
+
+  // Agregar las celdas a la nueva fila
+  nuevaFila.appendChild(celdaNombre);
+  nuevaFila.appendChild(celdaCalorias);
+  nuevaFila.appendChild(celdaCarbohidratos);
+  nuevaFila.appendChild(celdaGrasas);
+  nuevaFila.appendChild(celdaProteinas);
+
+  // Agregar la nueva fila a la tabla
+  tablaAlimentacion.appendChild(nuevaFila);
+
+  // Limpiar el valor almacenado en el localStorage
+  localStorage.removeItem('alimentoSeleccionado');
+}
     function redirectToForm() {
       window.location.href = "FormularioInicioSesion.php";
     }
@@ -490,6 +530,8 @@ table th {
     function redirectToAlimentacion(){
       window.location.href = "PaginaAlimentacion.php";
     }
+
+
   </script>
 </body>
 </html>
