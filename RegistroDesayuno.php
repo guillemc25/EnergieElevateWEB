@@ -252,6 +252,7 @@ require_once "BuscarAlimentos.php";
 
   <script>
   
+  
   // Función para realizar la búsqueda y mostrar los resultados en el HTML
 function buscarAlimento() {
   // Obtener el término de búsqueda del input
@@ -331,9 +332,12 @@ function buscarAlimento() {
 }
 
 function actualizarTabla(alimento) {
-  console.log('actualizarTabla:', alimento);
+ 
 
-  // Guardar la información en el localStorage
+// Obtener el array de alimentos seleccionados del localStorage
+var alimentosSeleccionados = JSON.parse(localStorage.getItem('alimentosSeleccionados')) || [];
+
+// Crear un objeto con la información del alimento seleccionado
 var alimentoSeleccionado = {
   nombre: alimento.NombreAlimento,
   calorias: alimento.Calorias_100g,
@@ -341,7 +345,13 @@ var alimentoSeleccionado = {
   grasas: alimento.Grasas_100g,
   proteinas: alimento.Proteinas_100g
 };
-localStorage.setItem('alimentoSeleccionado', JSON.stringify(alimentoSeleccionado));
+
+// Agregar el objeto al array de alimentos seleccionados
+alimentosSeleccionados.push(alimentoSeleccionado);
+
+// Guardar el array actualizado en el localStorage
+localStorage.setItem('alimentosSeleccionados', JSON.stringify(alimentosSeleccionados));
+
 
   // Redireccionar a la página de alimentación
   window.location.href = 'PaginaAlimentacion.php';

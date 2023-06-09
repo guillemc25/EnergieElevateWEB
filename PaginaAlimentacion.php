@@ -1,7 +1,7 @@
 <?php
-session_start();
+require_once "conexion.php";
+require_once "BuscarAlimentos.php";
 
-// Resto del código de tu archivo PaginaAlimentacion.php
 ?>
 
 <!DOCTYPE html>
@@ -312,173 +312,120 @@ table th {
   </nav>
 
   <div class="table-container">
-    <table class="tablaAlimentacion ">
-    <colgroup>
-        <col class="col-1">
-          <col class="col-2">
-          <col class="col-2">
-          <col class="col-2">
-          <col class="col-2">
-          <col class="col-2">
-          <col class="col-2">
-        <col class="col-8">
-      </colgroup>
-
-      
-
-      <thead>
-      <tr class="meal_header">
-
-        <td class="Desayuno">Desayuno</td>
-        <td class=" nutrient-column">
-        Calorías
-        <div class="subtitle">kcal</div>
-        </td>
-        <td class=" nutrient-column">
-        Carbohidratos
-        <div class="subtitle">g</div>
-        </td>
-        <td class="nutrient-column">
-        Grasas
-        <div class="subtitle">g</div>
-        </td>
-        <td class=" nutrient-column">
-        Proteínas
-        <div class="subtitle">g</div>
-        </td>
-      
-  </tr>
-      </thead>
-
-    <tbody class="Body">
-
-    <tr class="bottom">
-
-      <td class="first alt" style="z-index: 10">
-
-              <a class="add_food" href="RegistroDesayuno.php">Añadir alimento</a>
-
-          </td>
-          <td></td>
-          <td>
-                <span class="macro-value">&nbsp;</span>
-                <span class="macro-percentage">
-                    
-                </span>
-              </td>
-          <td>
-                <span class="macro-value"></span>
-                <span class="macro-percentage">
-                    
-                </span>
-          </td>
-          <td>
-                <span class="macro-value"></span>
-                <span class="macro-percentage">
-                    
-                </span>
-          </td>
-          <td></td>
-          <td></td>
-      </tr>
-      <tr class="meal_header">
-
-            <td class="first alt">Almuerzo</td>
-          </tr>
-          <tr>
-
-<td class="first alt" style="z-index: 10">
-
-      <a class="add_food" href="RegistroComida.php">Añadir alimento</a>
-
-    </td>
-    <td></td>
-    <td>
-          <span class="macro-value"></span>
-          <span class="macro-percentage">
-            
-          </span>
-        </td>
-    <td>
-          <span class="macro-value">&nbsp;</span>
-          <span class="macro-percentage">
-              
-          </span>
-    </td>
-    <td>
-          <span class="macro-value"></span>
-          <span class="macro-percentage">
-              
-          </span>
-    </td>
-    <td></td>
-    <td></td>
-</tr>
-<tr class="meal_header">
-
-            <td class="first alt">Merienda</td>
-          </tr>
-          <td class="first alt" style="z-index: 10">
-
-          <a class="add_food" href="RegistroMerienda.php">Añadir alimento</a>
-
-</td>    
-<td></td>
-    <td>
-          <span class="macro-value"></span>
-          <span class="macro-percentage">
-              
-          </span>
-        </td>
-    <td>
-          <span class="macro-value"></span>
-          <span class="macro-percentage">
-              
-          </span>
-    </td>
-    <td>
-          <span class="macro-value"></span>
-          <span class="macro-percentage">
-              
-          </span>
-    </td>
-    <td></td>
-    <td></td>    
-
+   
+    <table class="tablaAlimentacion">
+  <colgroup>
+    <col class="col-1">
+    <col class="col-2">
+    <col class="col-2">
+    <col class="col-2">
+    <col class="col-2">
+    <col class="col-2">
+    <col class="col-2">
+    <col class="col-8">
+  </colgroup>
+  <thead>
     <tr class="meal_header">
+      <td class="Desayuno">Desayuno</td>
+      <td class="nutrient-column">Calorías<div class="subtitle">kcal</div></td>
+      <td class="nutrient-column">Carbohidratos<div class="subtitle">g</div></td>
+      <td class="nutrient-column">Grasas<div class="subtitle">g</div></td>
+      <td class="nutrient-column">Proteínas<div class="subtitle">g</div></td>
+    </tr>
+  </thead>
+  <tbody class="Body">
+    <tr class="bottom">
+      <td class="first alt" style="z-index: 10">
+        <a class="add_food" href="RegistroDesayuno.php">Añadir alimento</a>
+      </td>
+      <td></td>
+      <td>
+        <span class="macro-value">&nbsp;</span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="meal_header">
+      <td class="first alt">Almuerzo</td>
+    </tr>
+    <tr>
+      <td class="first alt" style="z-index: 10">
+        <a class="add_food" href="RegistroComida.php">Añadir alimento</a>
+      </td>
+      <td></td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td>
+        <span class="macro-value">&nbsp;</span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="meal_header">
+      <td class="first alt">Merienda</td>
+    </tr>
+    <tr>
+      <td class="first alt" style="z-index: 10">
+        <a class="add_food" href="RegistroMerienda.php">Añadir alimento</a>
+      </td>
+      <td></td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr class="meal_header">
+      <td class="first alt">Cena</td>
+    </tr>
+    <tr>
+      <td class="first alt" style="z-index: 10">
+        <a class="add_food" href="RegistroCena.php">Añadir alimento</a>
+      </td>
+      <td></td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td>
+        <span class="macro-value"></span>
+        <span class="macro-percentage"></span>
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
-            <td class="first alt">Cena</td>
-          </tr>
-          <td class="first alt" style="z-index: 10">
-
-          <a class="add_food" href="RegistroCena.php">Añadir alimento</a>
-
-</td>    
-<td></td>
-    <td>
-          <span class="macro-value"></span>
-          <span class="macro-percentage">
-              
-          </span>
-        </td>
-    <td>
-          <span class="macro-value"></span>
-          <span class="macro-percentage">
-              
-          </span>
-    </td>
-    <td>
-          <span class="macro-value"></span>
-          <span class="macro-percentage">
-              
-          </span>
-    </td>
-    <td></td>
-    <td></td>   
-    </tbody>
-      
-    
-    </table>
   
   </div>
 
@@ -486,26 +433,32 @@ table th {
 
   <script>
 
-     // Obtener el elemento con la clase "tablaAlimentacion"
-  var tablaAlimentacion = document.querySelector('.tablaAlimentacion tbody');
+   // Obtener el elemento con la clase "tablaAlimentacion"
+   var tbody = document.querySelector('.tablaAlimentacion tbody');
 
-// Obtener la información del localStorage
-var alimentoSeleccionado = localStorage.getItem('alimentoSeleccionado');
-if (alimentoSeleccionado) {
-  alimentoSeleccionado = JSON.parse(alimentoSeleccionado);
+   var filaBottom = document.querySelector('.tablaAlimentacion .bottom');
 
+// Obtener el array de alimentos seleccionados del localStorage
+var alimentosSeleccionados = JSON.parse(localStorage.getItem('alimentosSeleccionados')) || [];
+
+// Recorrer el array de alimentos seleccionados y crear una fila por cada alimento
+for (var i = 0; i < alimentosSeleccionados.length; i++) {
+  var alimento = alimentosSeleccionados[i];
+  
   // Crear una nueva fila con los datos del alimento seleccionado
   var nuevaFila = document.createElement('tr');
+  nuevaFila.classList.add('Alimento-existente');
+  
   var celdaNombre = document.createElement('td');
-  celdaNombre.innerHTML = alimentoSeleccionado.nombre;
+  celdaNombre.innerHTML = alimento.nombre;
   var celdaCalorias = document.createElement('td');
-  celdaCalorias.innerHTML = alimentoSeleccionado.calorias;
+  celdaCalorias.innerHTML = alimento.calorias;
   var celdaCarbohidratos = document.createElement('td');
-  celdaCarbohidratos.innerHTML = alimentoSeleccionado.carbohidratos;
+  celdaCarbohidratos.innerHTML = alimento.carbohidratos;
   var celdaGrasas = document.createElement('td');
-  celdaGrasas.innerHTML = alimentoSeleccionado.grasas;
+  celdaGrasas.innerHTML = alimento.grasas;
   var celdaProteinas = document.createElement('td');
-  celdaProteinas.innerHTML = alimentoSeleccionado.proteinas;
+  celdaProteinas.innerHTML = alimento.proteinas;
 
   // Agregar las celdas a la nueva fila
   nuevaFila.appendChild(celdaNombre);
@@ -514,12 +467,13 @@ if (alimentoSeleccionado) {
   nuevaFila.appendChild(celdaGrasas);
   nuevaFila.appendChild(celdaProteinas);
 
-  // Agregar la nueva fila a la tabla
-  tablaAlimentacion.appendChild(nuevaFila);
-
-  // Limpiar el valor almacenado en el localStorage
-  localStorage.removeItem('alimentoSeleccionado');
+  // Insertar la nueva fila antes de la fila "bottom"
+  tbody.insertBefore(nuevaFila, filaBottom);
 }
+
+
+
+
     function redirectToForm() {
       window.location.href = "FormularioInicioSesion.php";
     }
