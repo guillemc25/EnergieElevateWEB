@@ -11,7 +11,7 @@ require_once "BuscarAlimentos.php";
   <meta name="tipo_contenido"  content="text/html;" http-equiv="content-type" charset="utf-8">
   <title>EnergieElevate</title>
   <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
-  <script src="BuscarAlimentos.js"></script>
+  <script src="GuardarAlimentos.js"></script>
   <style>
 
 .user-container {
@@ -273,7 +273,74 @@ table th {
 }
 
 
+/* Estilo para la clase "bottom" */
+tr.bottom {
+    background-color: #f2f2f2;
+  }
 
+  tr.bottom td:first-child {
+    border-right: none;
+  }
+
+  tr.bottom td:last-child {
+    border-left: none;
+  }
+
+  tr.bottom td a.add_food {
+    color: #0072BF;
+    text-decoration: none;
+  }
+
+  tr.bottom td a.add_food:hover {
+    text-decoration: underline;
+  }
+
+  /* Estilo para las clases "Almuerzo", "Merienda" y "Cena" */
+  tr.Almuerzo,
+  tr.Merienda,
+  tr.Cena {
+    background-color: #f9f9f9;
+  }
+
+  tr.Almuerzo td:first-child,
+  tr.Merienda td:first-child,
+  tr.Cena td:first-child {
+    border-right: none;
+  }
+
+  tr.Almuerzo td:last-child,
+  tr.Merienda td:last-child,
+  tr.Cena td:last-child {
+    border-left: none;
+  }
+
+  tr.Almuerzo td a.add_food,
+  tr.Merienda td a.add_food,
+  tr.Cena td a.add_food {
+    color: #0072BF;
+    text-decoration: none;
+  }
+
+  tr.Almuerzo td a.add_food:hover,
+  tr.Merienda td a.add_food:hover,
+  tr.Cena td a.add_food:hover {
+    text-decoration: underline;
+  }
+
+  /* Estilo para la clase "alimento-existente" */
+  tr.Alimento-existente {
+    background-color: #ffeecc;
+    color: #333;
+  }
+
+  tr.Alimento-existente:hover {
+    background-color: #ffcc99;
+  }
+
+  tr.Alimento-existente td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
 
 
     </style>
@@ -352,12 +419,12 @@ table th {
         <span class="macro-percentage"></span>
       </td>
       <td></td>
-      <td></td>
+     
     </tr>
     <tr class="meal_header">
       <td class="first alt">Almuerzo</td>
     </tr>
-    <tr>
+    <tr class="Almuerzo">
       <td class="first alt" style="z-index: 10">
         <a class="add_food" href="RegistroComida.php">Añadir alimento</a>
       </td>
@@ -375,12 +442,12 @@ table th {
         <span class="macro-percentage"></span>
       </td>
       <td></td>
-      <td></td>
+    
     </tr>
     <tr class="meal_header">
       <td class="first alt">Merienda</td>
     </tr>
-    <tr>
+    <tr class="Merienda">
       <td class="first alt" style="z-index: 10">
         <a class="add_food" href="RegistroMerienda.php">Añadir alimento</a>
       </td>
@@ -398,12 +465,12 @@ table th {
         <span class="macro-percentage"></span>
       </td>
       <td></td>
-      <td></td>
+      
     </tr>
     <tr class="meal_header">
       <td class="first alt">Cena</td>
     </tr>
-    <tr>
+    <tr class="Cena">
       <td class="first alt" style="z-index: 10">
         <a class="add_food" href="RegistroCena.php">Añadir alimento</a>
       </td>
@@ -421,7 +488,7 @@ table th {
         <span class="macro-percentage"></span>
       </td>
       <td></td>
-      <td></td>
+   
     </tr>
   </tbody>
 </table>
@@ -433,43 +500,319 @@ table th {
 
   <script>
 
-   // Obtener el elemento con la clase "tablaAlimentacion"
-   var tbody = document.querySelector('.tablaAlimentacion tbody');
-
-   var filaBottom = document.querySelector('.tablaAlimentacion .bottom');
+// Obtener el elemento con la clase "tablaAlimentacion"
+var tbody = document.querySelector('.tablaAlimentacion tbody');
+var filaBottom = document.querySelector('.tablaAlimentacion .bottom');
 
 // Obtener el array de alimentos seleccionados del localStorage
 var alimentosSeleccionados = JSON.parse(localStorage.getItem('alimentosSeleccionados')) || [];
 
-// Recorrer el array de alimentos seleccionados y crear una fila por cada alimento
-for (var i = 0; i < alimentosSeleccionados.length; i++) {
-  var alimento = alimentosSeleccionados[i];
-  
-  // Crear una nueva fila con los datos del alimento seleccionado
-  var nuevaFila = document.createElement('tr');
-  nuevaFila.classList.add('Alimento-existente');
-  
-  var celdaNombre = document.createElement('td');
-  celdaNombre.innerHTML = alimento.nombre;
-  var celdaCalorias = document.createElement('td');
-  celdaCalorias.innerHTML = alimento.calorias;
-  var celdaCarbohidratos = document.createElement('td');
-  celdaCarbohidratos.innerHTML = alimento.carbohidratos;
-  var celdaGrasas = document.createElement('td');
-  celdaGrasas.innerHTML = alimento.grasas;
-  var celdaProteinas = document.createElement('td');
-  celdaProteinas.innerHTML = alimento.proteinas;
+// Verificar si el localStorage está vacío
+if (alimentosSeleccionados.length === 0) {
+  // No hay alimentos seleccionados, no se crea ninguna fila en la tabla
+  localStorage.removeItem('alimentosSeleccionados');
+} else {
+  // Recorrer el array de alimentos seleccionados y crear una fila por cada alimento
+  for (var i = 0; i < alimentosSeleccionados.length; i++) {
+    var alimento = alimentosSeleccionados[i];
+    
+    // Crear una nueva fila con los datos del alimento seleccionado
+    var nuevaFila = document.createElement('tr');
+    nuevaFila.classList.add('Alimento-existente');
+    
+    var celdaNombre = document.createElement('td');
+    celdaNombre.innerHTML = alimento.nombre;
+    var celdaCalorias = document.createElement('td');
+    celdaCalorias.innerHTML = alimento.calorias;
+    var celdaCarbohidratos = document.createElement('td');
+    celdaCarbohidratos.innerHTML = alimento.carbohidratos;
+    var celdaGrasas = document.createElement('td');
+    celdaGrasas.innerHTML = alimento.grasas;
+    var celdaProteinas = document.createElement('td');
+    celdaProteinas.innerHTML = alimento.proteinas;
+    var celdaEliminar = document.createElement('td');
+    
+    var botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar';
+    
+    // Obtener el índice del alimento en el array
+    var indice = i;
 
-  // Agregar las celdas a la nueva fila
-  nuevaFila.appendChild(celdaNombre);
-  nuevaFila.appendChild(celdaCalorias);
-  nuevaFila.appendChild(celdaCarbohidratos);
-  nuevaFila.appendChild(celdaGrasas);
-  nuevaFila.appendChild(celdaProteinas);
+    botonEliminar.setAttribute('data-indice', indice);
+    
+    celdaEliminar.appendChild(botonEliminar);
 
-  // Insertar la nueva fila antes de la fila "bottom"
-  tbody.insertBefore(nuevaFila, filaBottom);
+    // Agregar las celdas a la nueva fila
+    nuevaFila.appendChild(celdaNombre);
+    nuevaFila.appendChild(celdaCalorias);
+    nuevaFila.appendChild(celdaCarbohidratos);
+    nuevaFila.appendChild(celdaGrasas);
+    nuevaFila.appendChild(celdaProteinas);
+    nuevaFila.appendChild(celdaEliminar);
+    
+    // Insertar la nueva fila antes de la fila "bottom"
+    tbody.insertBefore(nuevaFila, filaBottom);
+
+    botonEliminar.addEventListener('click', function() {
+      // Obtener la fila a la que pertenece el botón eliminar
+      var filaEliminar = this.closest('tr');
+      
+      // Obtener el índice del alimento a eliminar desde el atributo personalizado
+      var indice = parseInt(this.getAttribute('data-indice'));
+      
+      // Eliminar el alimento del array de alimentos seleccionados
+      alimentosSeleccionados.splice(indice, 1);
+      
+      // Actualizar el array en el localStorage
+      localStorage.setItem('alimentosSeleccionados', JSON.stringify(alimentosSeleccionados));
+      
+      // Eliminar la fila de la tabla
+      filaEliminar.remove();
+
+       // Verificar si es el último alimento y eliminarlo del localStorage
+  if (alimentosSeleccionados.length === 0) {
+    localStorage.removeItem('alimentosSeleccionadosMerienda');
+  }
+    });
+  }
 }
+
+// Obtener el elemento con la clase "tablaAlimentacion"
+var tbody = document.querySelector('.tablaAlimentacion tbody');
+var filaBottom = document.querySelector('.tablaAlimentacion .Almuerzo');
+
+// Obtener el array de alimentos seleccionados del localStorage
+var alimentosSeleccionadosAlmuerzo = JSON.parse(localStorage.getItem('alimentosSeleccionadosAlmuerzo')) || [];
+
+// Verificar si el localStorage está vacío
+if (alimentosSeleccionadosAlmuerzo.length === 0) {
+  // No hay alimentos seleccionados, no se crea ninguna fila en la tabla
+  localStorage.removeItem('alimentosSeleccionadosAlmuerzo');
+} else {
+  // Recorrer el array de alimentos seleccionados y crear una fila por cada alimento
+  for (var i = 0; i < alimentosSeleccionadosAlmuerzo.length; i++) {
+    var alimento = alimentosSeleccionadosAlmuerzo[i];
+    
+    // Crear una nueva fila con los datos del alimento seleccionado
+    var nuevaFila = document.createElement('tr');
+    nuevaFila.classList.add('Alimento-existente');
+    
+    var celdaNombre = document.createElement('td');
+    celdaNombre.innerHTML = alimento.nombre;
+    var celdaCalorias = document.createElement('td');
+    celdaCalorias.innerHTML = alimento.calorias;
+    var celdaCarbohidratos = document.createElement('td');
+    celdaCarbohidratos.innerHTML = alimento.carbohidratos;
+    var celdaGrasas = document.createElement('td');
+    celdaGrasas.innerHTML = alimento.grasas;
+    var celdaProteinas = document.createElement('td');
+    celdaProteinas.innerHTML = alimento.proteinas;
+    var celdaEliminar = document.createElement('td');
+    
+    var botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar';
+    
+    // Obtener el índice del alimento en el array
+    var indice = i;
+
+    botonEliminar.setAttribute('data-indice', indice);
+    
+    celdaEliminar.appendChild(botonEliminar);
+
+    // Agregar las celdas a la nueva fila
+    nuevaFila.appendChild(celdaNombre);
+    nuevaFila.appendChild(celdaCalorias);
+    nuevaFila.appendChild(celdaCarbohidratos);
+    nuevaFila.appendChild(celdaGrasas);
+    nuevaFila.appendChild(celdaProteinas);
+    nuevaFila.appendChild(celdaEliminar);
+    
+    // Insertar la nueva fila antes de la fila "bottom"
+    tbody.insertBefore(nuevaFila, filaBottom);
+
+    botonEliminar.addEventListener('click', function() {
+      // Obtener la fila a la que pertenece el botón eliminar
+      var filaEliminar = this.closest('tr');
+      
+      // Obtener el índice del alimento a eliminar desde el atributo personalizado
+      var indice = parseInt(this.getAttribute('data-indice'));
+      
+      // Eliminar el alimento del array de alimentos seleccionados
+      alimentosSeleccionadosAlmuerzo.splice(indice, 1);
+      
+      // Actualizar el array en el localStorage
+      localStorage.setItem('alimentosSeleccionadosAlmuerzo', JSON.stringify(alimentosSeleccionadosAlmuerzo));
+      
+      // Eliminar la fila de la tabla
+      filaEliminar.remove();
+
+       // Verificar si es el último alimento y eliminarlo del localStorage
+  if (alimentosSeleccionadosAlmuerzo.length === 0) {
+    localStorage.removeItem('alimentosSeleccionadosAlmuerzo');
+  }
+    });
+  }
+}
+
+// Obtener el elemento con la clase "tablaAlimentacion"
+var tbody = document.querySelector('.tablaAlimentacion tbody');
+var filaBottom = document.querySelector('.tablaAlimentacion .Merienda');
+
+// Obtener el array de alimentos seleccionados del localStorage
+var alimentosSeleccionadosMerienda = JSON.parse(localStorage.getItem('alimentosSeleccionadosMerienda')) || [];
+
+// Verificar si el localStorage está vacío
+if (alimentosSeleccionadosMerienda.length === 0) {
+  // No hay alimentos seleccionados, no se crea ninguna fila en la tabla
+  localStorage.removeItem('alimentosSeleccionadosMerienda');
+} else {
+  // Recorrer el array de alimentos seleccionados y crear una fila por cada alimento
+  for (var i = 0; i < alimentosSeleccionadosMerienda.length; i++) {
+    var alimento = alimentosSeleccionadosMerienda[i];
+    
+    // Crear una nueva fila con los datos del alimento seleccionado
+    var nuevaFila = document.createElement('tr');
+    nuevaFila.classList.add('Alimento-existente');
+    
+    var celdaNombre = document.createElement('td');
+    celdaNombre.innerHTML = alimento.nombre;
+    var celdaCalorias = document.createElement('td');
+    celdaCalorias.innerHTML = alimento.calorias;
+    var celdaCarbohidratos = document.createElement('td');
+    celdaCarbohidratos.innerHTML = alimento.carbohidratos;
+    var celdaGrasas = document.createElement('td');
+    celdaGrasas.innerHTML = alimento.grasas;
+    var celdaProteinas = document.createElement('td');
+    celdaProteinas.innerHTML = alimento.proteinas;
+    var celdaEliminar = document.createElement('td');
+    
+    var botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar';
+    
+    // Obtener el índice del alimento en el array
+    var indice = i;
+
+    botonEliminar.setAttribute('data-indice', indice);
+    
+    celdaEliminar.appendChild(botonEliminar);
+
+    // Agregar las celdas a la nueva fila
+    nuevaFila.appendChild(celdaNombre);
+    nuevaFila.appendChild(celdaCalorias);
+    nuevaFila.appendChild(celdaCarbohidratos);
+    nuevaFila.appendChild(celdaGrasas);
+    nuevaFila.appendChild(celdaProteinas);
+    nuevaFila.appendChild(celdaEliminar);
+    
+    // Insertar la nueva fila antes de la fila "bottom"
+    tbody.insertBefore(nuevaFila, filaBottom);
+
+    botonEliminar.addEventListener('click', function() {
+      // Obtener la fila a la que pertenece el botón eliminar
+      var filaEliminar = this.closest('tr');
+      
+      // Obtener el índice del alimento a eliminar desde el atributo personalizado
+      var indice = parseInt(this.getAttribute('data-indice'));
+      
+      // Eliminar el alimento del array de alimentos seleccionados
+      alimentosSeleccionadosMerienda.splice(indice, 1);
+      
+      // Actualizar el array en el localStorage
+      localStorage.setItem('alimentosSeleccionadosMerienda', JSON.stringify(alimentosSeleccionadosMerienda));
+      
+      // Eliminar la fila de la tabla
+      filaEliminar.remove();
+
+       // Verificar si es el último alimento y eliminarlo del localStorage
+  if (alimentosSeleccionadosMerienda.length === 0) {
+    localStorage.removeItem('alimentosSeleccionadosMerienda');
+  }
+    });
+  }
+}
+
+
+
+
+// Obtener el elemento con la clase "tablaAlimentacion"
+var tbody = document.querySelector('.tablaAlimentacion tbody');
+var filaBottom = document.querySelector('.tablaAlimentacion .Cena');
+
+// Obtener el array de alimentos seleccionados del localStorage
+var alimentosSeleccionadosCena = JSON.parse(localStorage.getItem('alimentosSeleccionadosCena')) || [];
+
+// Verificar si el localStorage está vacío
+if (alimentosSeleccionadosCena.length === 0) {
+  // No hay alimentos seleccionados, no se crea ninguna fila en la tabla
+  localStorage.removeItem('alimentosSeleccionadosCena');
+} else {
+  // Recorrer el array de alimentos seleccionados y crear una fila por cada alimento
+  for (var i = 0; i < alimentosSeleccionadosCena.length; i++) {
+    var alimento = alimentosSeleccionadosCena[i];
+    
+    // Crear una nueva fila con los datos del alimento seleccionado
+    var nuevaFila = document.createElement('tr');
+    nuevaFila.classList.add('Alimento-existente');
+    
+    var celdaNombre = document.createElement('td');
+    celdaNombre.innerHTML = alimento.nombre;
+    var celdaCalorias = document.createElement('td');
+    celdaCalorias.innerHTML = alimento.calorias;
+    var celdaCarbohidratos = document.createElement('td');
+    celdaCarbohidratos.innerHTML = alimento.carbohidratos;
+    var celdaGrasas = document.createElement('td');
+    celdaGrasas.innerHTML = alimento.grasas;
+    var celdaProteinas = document.createElement('td');
+    celdaProteinas.innerHTML = alimento.proteinas;
+    var celdaEliminar = document.createElement('td');
+    
+    var botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar';
+    
+    // Obtener el índice del alimento en el array
+    var indice = i;
+
+    botonEliminar.setAttribute('data-indice', indice);
+    
+    celdaEliminar.appendChild(botonEliminar);
+
+    // Agregar las celdas a la nueva fila
+    nuevaFila.appendChild(celdaNombre);
+    nuevaFila.appendChild(celdaCalorias);
+    nuevaFila.appendChild(celdaCarbohidratos);
+    nuevaFila.appendChild(celdaGrasas);
+    nuevaFila.appendChild(celdaProteinas);
+    nuevaFila.appendChild(celdaEliminar);
+    
+    // Insertar la nueva fila antes de la fila "bottom"
+    tbody.insertBefore(nuevaFila, filaBottom);
+
+    botonEliminar.addEventListener('click', function() {
+      // Obtener la fila a la que pertenece el botón eliminar
+      var filaEliminar = this.closest('tr');
+      
+      // Obtener el índice del alimento a eliminar desde el atributo personalizado
+      var indice = parseInt(this.getAttribute('data-indice'));
+      
+      // Eliminar el alimento del array de alimentos seleccionados
+      alimentosSeleccionadosCena.splice(indice, 1);
+      
+      // Actualizar el array en el localStorage
+      localStorage.setItem('alimentosSeleccionadosCena', JSON.stringify(alimentosSeleccionadosCena));
+      
+      // Eliminar la fila de la tabla
+      filaEliminar.remove();
+
+       // Verificar si es el último alimento y eliminarlo del localStorage
+  if (alimentosSeleccionadosCena.length === 0) {
+    localStorage.removeItem('alimentosSeleccionadosCena');
+  }
+    });
+  }
+}
+
+
+
 
 
 
