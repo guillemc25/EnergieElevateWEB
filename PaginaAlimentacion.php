@@ -500,6 +500,9 @@ tr.bottom {
 
   <script>
 
+// Sumar las calorías de los alimentos seleccionados en cada sección
+var totalCalorias = 0;
+
 // Obtener el elemento con la clase "tablaAlimentacion"
 var tbody = document.querySelector('.tablaAlimentacion tbody');
 var filaBottom = document.querySelector('.tablaAlimentacion .bottom');
@@ -554,24 +557,33 @@ if (alimentosSeleccionados.length === 0) {
     tbody.insertBefore(nuevaFila, filaBottom);
 
     botonEliminar.addEventListener('click', function() {
-      // Obtener la fila a la que pertenece el botón eliminar
-      var filaEliminar = this.closest('tr');
-      
-      // Obtener el índice del alimento a eliminar desde el atributo personalizado
-      var indice = parseInt(this.getAttribute('data-indice'));
-      
-      // Eliminar el alimento del array de alimentos seleccionados
-      alimentosSeleccionados.splice(indice, 1);
-      
-      // Actualizar el array en el localStorage
-      localStorage.setItem('alimentosSeleccionados', JSON.stringify(alimentosSeleccionados));
-      
-      // Eliminar la fila de la tabla
-      filaEliminar.remove();
+    // Obtener la fila a la que pertenece el botón eliminar
+  var filaEliminar = this.closest('tr');
+  
+  // Obtener el índice del alimento a eliminar desde el atributo personalizado
+  var indice = parseInt(this.getAttribute('data-indice'));
+  
+  // Obtener el alimento a eliminar
+  var alimentoEliminar = alimentosSeleccionados[indice];
+  
+  // Restar las calorías del alimento eliminado de la variable totalCalorias
+  totalCalorias -= alimentoEliminar.calorias;
 
-       // Verificar si es el último alimento y eliminarlo del localStorage
+  // Actualizar el valor de totalCalorias en el localStorage
+  localStorage.setItem('totalCalorias', totalCalorias.toString());
+  
+  // Eliminar el alimento del array de alimentos seleccionados
+  alimentosSeleccionados.splice(indice, 1);
+  
+  // Actualizar el array en el localStorage
+  localStorage.setItem('alimentosSeleccionados', JSON.stringify(alimentosSeleccionados));
+
+  // Eliminar la fila de la tabla
+  filaEliminar.remove();
+
+  // Verificar si es el último alimento y eliminarlo del localStorage
   if (alimentosSeleccionados.length === 0) {
-    localStorage.removeItem('alimentosSeleccionadosMerienda');
+    localStorage.removeItem('alimentosSeleccionados');
   }
     });
   }
@@ -632,21 +644,30 @@ if (alimentosSeleccionadosAlmuerzo.length === 0) {
 
     botonEliminar.addEventListener('click', function() {
       // Obtener la fila a la que pertenece el botón eliminar
-      var filaEliminar = this.closest('tr');
-      
-      // Obtener el índice del alimento a eliminar desde el atributo personalizado
-      var indice = parseInt(this.getAttribute('data-indice'));
-      
-      // Eliminar el alimento del array de alimentos seleccionados
-      alimentosSeleccionadosAlmuerzo.splice(indice, 1);
-      
-      // Actualizar el array en el localStorage
-      localStorage.setItem('alimentosSeleccionadosAlmuerzo', JSON.stringify(alimentosSeleccionadosAlmuerzo));
-      
-      // Eliminar la fila de la tabla
-      filaEliminar.remove();
+  var filaEliminar = this.closest('tr');
+  
+  // Obtener el índice del alimento a eliminar desde el atributo personalizado
+  var indice = parseInt(this.getAttribute('data-indice'));
+  
+  // Obtener el alimento a eliminar
+  var alimentoEliminar = alimentosSeleccionadosAlmuerzo[indice];
+  
+  // Restar las calorías del alimento eliminado de la variable totalCalorias
+  totalCalorias -= alimentoEliminar.calorias;
 
-       // Verificar si es el último alimento y eliminarlo del localStorage
+  // Actualizar el valor de totalCalorias en el localStorage
+  localStorage.setItem('totalCalorias', totalCalorias.toString());
+  
+  // Eliminar el alimento del array de alimentos seleccionados
+  alimentosSeleccionadosAlmuerzo.splice(indice, 1);
+  
+  // Actualizar el array en el localStorage
+  localStorage.setItem('alimentosSeleccionadosAlmuerzo', JSON.stringify(alimentosSeleccionadosAlmuerzo));
+
+  // Eliminar la fila de la tabla
+  filaEliminar.remove();
+
+  // Verificar si es el último alimento y eliminarlo del localStorage
   if (alimentosSeleccionadosAlmuerzo.length === 0) {
     localStorage.removeItem('alimentosSeleccionadosAlmuerzo');
   }
@@ -709,21 +730,30 @@ if (alimentosSeleccionadosMerienda.length === 0) {
 
     botonEliminar.addEventListener('click', function() {
       // Obtener la fila a la que pertenece el botón eliminar
-      var filaEliminar = this.closest('tr');
-      
-      // Obtener el índice del alimento a eliminar desde el atributo personalizado
-      var indice = parseInt(this.getAttribute('data-indice'));
-      
-      // Eliminar el alimento del array de alimentos seleccionados
-      alimentosSeleccionadosMerienda.splice(indice, 1);
-      
-      // Actualizar el array en el localStorage
-      localStorage.setItem('alimentosSeleccionadosMerienda', JSON.stringify(alimentosSeleccionadosMerienda));
-      
-      // Eliminar la fila de la tabla
-      filaEliminar.remove();
+  var filaEliminar = this.closest('tr');
+  
+  // Obtener el índice del alimento a eliminar desde el atributo personalizado
+  var indice = parseInt(this.getAttribute('data-indice'));
+  
+  // Obtener el alimento a eliminar
+  var alimentoEliminar = alimentosSeleccionadosMerienda[indice];
+  
+  // Restar las calorías del alimento eliminado de la variable totalCalorias
+  totalCalorias -= alimentoEliminar.calorias;
 
-       // Verificar si es el último alimento y eliminarlo del localStorage
+  // Actualizar el valor de totalCalorias en el localStorage
+  localStorage.setItem('totalCalorias', totalCalorias.toString());
+  
+  // Eliminar el alimento del array de alimentos seleccionados
+  alimentosSeleccionadosMerienda.splice(indice, 1);
+  
+  // Actualizar el array en el localStorage
+  localStorage.setItem('alimentosSeleccionadosMerienda', JSON.stringify(alimentosSeleccionadosMerienda));
+
+  // Eliminar la fila de la tabla
+  filaEliminar.remove();
+
+  // Verificar si es el último alimento y eliminarlo del localStorage
   if (alimentosSeleccionadosMerienda.length === 0) {
     localStorage.removeItem('alimentosSeleccionadosMerienda');
   }
@@ -789,27 +819,53 @@ if (alimentosSeleccionadosCena.length === 0) {
 
     botonEliminar.addEventListener('click', function() {
       // Obtener la fila a la que pertenece el botón eliminar
-      var filaEliminar = this.closest('tr');
-      
-      // Obtener el índice del alimento a eliminar desde el atributo personalizado
-      var indice = parseInt(this.getAttribute('data-indice'));
-      
-      // Eliminar el alimento del array de alimentos seleccionados
-      alimentosSeleccionadosCena.splice(indice, 1);
-      
-      // Actualizar el array en el localStorage
-      localStorage.setItem('alimentosSeleccionadosCena', JSON.stringify(alimentosSeleccionadosCena));
-      
-      // Eliminar la fila de la tabla
-      filaEliminar.remove();
+  var filaEliminar = this.closest('tr');
+  
+  // Obtener el índice del alimento a eliminar desde el atributo personalizado
+  var indice = parseInt(this.getAttribute('data-indice'));
+  
+  // Obtener el alimento a eliminar
+  var alimentoEliminar = alimentosSeleccionadosCena[indice];
+  
+  // Restar las calorías del alimento eliminado de la variable totalCalorias
+  totalCalorias -= alimentoEliminar.calorias;
 
-       // Verificar si es el último alimento y eliminarlo del localStorage
+  // Actualizar el valor de totalCalorias en el localStorage
+  localStorage.setItem('totalCalorias', totalCalorias.toString());
+  
+  // Eliminar el alimento del array de alimentos seleccionados
+  alimentosSeleccionadosCena.splice(indice, 1);
+  
+  // Actualizar el array en el localStorage
+  localStorage.setItem('alimentosSeleccionadosCena', JSON.stringify(alimentosSeleccionadosCena));
+
+  // Eliminar la fila de la tabla
+  filaEliminar.remove();
+
+  // Verificar si es el último alimento y eliminarlo del localStorage
   if (alimentosSeleccionadosCena.length === 0) {
     localStorage.removeItem('alimentosSeleccionadosCena');
   }
     });
   }
 }
+
+
+
+// Función para sumar las calorías de los alimentos de una sección
+function sumarCalorias(alimentos) {
+  for (var i = 0; i < alimentos.length; i++) {
+    totalCalorias += alimentos[i].calorias;
+  }
+}
+
+sumarCalorias(alimentosSeleccionados);
+sumarCalorias(alimentosSeleccionadosAlmuerzo);
+sumarCalorias(alimentosSeleccionadosMerienda);
+sumarCalorias(alimentosSeleccionadosCena);
+
+// Guardar el total de calorías en el localStorage
+localStorage.setItem("totalCalorias", totalCalorias.toString());
 
 
 

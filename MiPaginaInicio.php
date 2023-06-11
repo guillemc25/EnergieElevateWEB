@@ -101,25 +101,34 @@ require_once "conexion.php";
       margin-top: 0px;
     }
 
-    .calorias-consumidas {
+    .calorias {
       border-bottom: 2px solid #ccc;
       margin-right: 200px;
       
     }
 
-    .calorias-consumidas .titulo {
+    .calorias .titulo {
       font-size: 24px;
       font-weight: bold;
       color: #333;
     }
 
-    .calorias-consumidas .cantidad {
+    .calorias .cantidad-Consumidas {
       color: rgb(133, 196, 0);
       font-weight: 700;
       font-size: 60px;
       line-height: 40px;
       letter-spacing: -1px;
     }
+
+    .calorias .cantidad-Quemadas {
+      color: rgb(133, 196, 0);
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 40px;
+      letter-spacing: -1px;
+    }
+
 
     .botones-acciones {
       display: flex;
@@ -214,13 +223,13 @@ require_once "conexion.php";
 
       <div class="resumen-diario">
         <div class="calorias-consumidas-info">
-          <div class="calorias-consumidas">
+          <div class="calorias">
             <p class="titulo">Calorías consumidas</p>
-            <p class="cantidad">0</p>
+            <p class="cantidad-Consumidas">0</p>
           </div>
-          <div class="calorias-consumidas">
+          <div class="calorias">
             <p class="titulo">Calorías quemadas</p>
-            <p class="cantidad">0</p>
+            <p class="cantidad-Quemadas">0</p>
           </div>
           <div class="info-alimentos-ejercicio">
             <p class="numEjercicios">0</p>
@@ -238,6 +247,23 @@ require_once "conexion.php";
   </div>
 
   <script>
+
+    // Recuperar el valor almacenado en localStorage
+    var totalCaloriasGuardadas = localStorage.getItem("totalCalorias");
+
+    // Actualizar el contenido del elemento <p> con el valor recuperado
+    var caloriasConsumidasElements = document.getElementsByClassName("cantidad-Consumidas");
+    caloriasConsumidasElements.textContent = totalCaloriasGuardadas || "0"; // Si no hay valor guardado, muestra "0"
+
+
+     // Actualizar el contenido de todos los elementos en la lista
+  for (var i = 0; i < caloriasConsumidasElements.length; i++) {
+    caloriasConsumidasElements[i].textContent = totalCaloriasGuardadas || "0";
+  }
+
+
+
+
     function redirectToForm() {
       window.location.href = "FormularioInicioSesion.php";
     }
