@@ -168,15 +168,6 @@ require_once "BuscarEjercicios.php";
 .nombre-alimento:hover {
   color: darkblue; /* Cambia el color al pasar el cursor por encima del nombre */
 }
-
-
-
-
-
-
-
-
-
   </style>
 </head>
 <body>
