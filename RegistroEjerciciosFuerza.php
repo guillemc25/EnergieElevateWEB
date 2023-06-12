@@ -17,7 +17,7 @@ require_once "conexion.php";
     .user-container {
       display: flex;
       align-items: center;
-    }
+    } 
 
     .username {
       font-size: 18px;

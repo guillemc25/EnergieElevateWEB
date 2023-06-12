@@ -263,7 +263,7 @@ function buscarAlimento() {
 
   // Realizar la petición al archivo PHP utilizando AJAX
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'RegistroDesayuno.php?searchTerm=' + searchTerm, true);
+  xhr.open('GET', 'RegistroCena.php?searchTerm=' + searchTerm, true);
   xhr.onload = function() {
     if (xhr.status === 200) {
       // Ocultar el mensaje emergente de búsqueda en progreso

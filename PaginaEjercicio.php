@@ -12,7 +12,7 @@ session_start();
   <style>
 
 .user-container {
-  display: flex;
+  display: flex; 
   align-items: center;
 }
 
