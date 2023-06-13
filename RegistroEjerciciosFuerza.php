@@ -1,8 +1,12 @@
-<?php
-require_once "conexion.php";
-// Resto del código de tu archivo PaginaAlimentacion.php
-?>
 
+<?php
+
+
+require_once "conexion.php";
+require_once "BuscarEjerciciosFuerza.php";
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +15,16 @@ require_once "conexion.php";
   <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
   <!-- Agrega el enlace al archivo de Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/css/bootstrap.min.css">
+
+
+  
   <style>
     /* Mantén tus estilos personalizados aquí */
 
     .user-container {
       display: flex;
       align-items: center;
-    } 
+    }
 
     .username {
       font-size: 18px;
@@ -84,7 +91,13 @@ require_once "conexion.php";
       background-color: #51a351;
     }
 
-   
+    hr {
+      height: 1px;
+      border: none;
+      background-color: #ccc;
+      margin-bottom: 5px;
+    }
+
     .main-title {
       margin-top: 10px;
       font-size: 24px;
@@ -121,11 +134,40 @@ require_once "conexion.php";
       list-style-type: none;
       border: 1px solid #ccc; /* Agrega el borde deseado */
       height: 200px;
+      padding: 10px; 
+      border: 1px solid #ccc;
+       white-space: nowrap;
+      margin-right: 5px;
+      overflow-x: scroll;
+       overflow-y: scroll;
+        margin-right: 5px;
     }
 
     #matching li {
-      margin-bottom: 10px;
+      display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  color: #0f73ab;
     }
+
+    #matching  span {
+      flex: 1;
+  margin-right: 10px;
+  
+}
+
+.nombre-alimento {
+  color: blue; /* Cambia el color del nombre del alimento a azul */
+  text-decoration: underline; /* Agrega subrayado al texto */
+  cursor: pointer; /* Cambia el cursor al estilo de un enlace */
+}
+
+.nombre-alimento:hover {
+  color: darkblue; /* Cambia el color al pasar el cursor por encima del nombre */
+}
   </style>
 </head>
 <body>
@@ -159,49 +201,132 @@ require_once "conexion.php";
         </li>
       </ul>
     </nav>
-
-    <div class="Busqueda-ejercicios" style="  max-width: 600px; padding: 5px; border: 2px solid #ccc;  margin: 0 auto;">
+    <div class="AlimentosBusqueda" style="  max-width: 600px; padding: 5px; border: 2px solid #ccc;  margin: 0 auto;">
 
     <div class="Busqueda" style="text-align: center; margin-top: 20px;">
       <h1 class="main-title" style="max-width: 600px; margin: 0 auto;">Añadir Ejercicio de Fuerza</h1>
-      <h1 class="secondary-title">Busca en nuestra base de datos de ejercicios por nombre:</h1>
+      <h1 class="secondary-title">Búsqueda en nuestra base de datos de Ejercicios por nombre:</h1>
+      
     </div>
 
     <div class="search-bar" style="margin-top: 50px; text-align: center;">
-      <input type="text" class="form-control search-input" placeholder="Buscar">
-      <button class="btn btn-primary search-button">Búsqueda</button>
+      <input type="text" class="search-input" placeholder="Buscar">
+      <button onclick="BuscarEjercicio()" class="search-button">Búsqueda</button>
+      
     </div>
+    <div id="loading-popup" style="display: none; margin-top: 10px; text-align: center;">
+    <h2>Buscando ejercicios...</h2>
+  </div>
 
     <div class="block-4">
       <div id="sort-block">
-        <h1 class="secondary-title search_">Ejercicios que coinciden:</h1>
+        <h1 class="secondary-title search_">Ejercicios coincidentes:</h1>
       </div>
       
     </div>
-    <div class="resultado" style="max-width: 600px;  margin: 0 auto;">
-        <ul id="matching" style="padding: 10px; border: 1px solid #ccc;">
-          <li  style="border-bottom: 1px solid #ccc;"><p>No se encontraron resultados.</p></li>
-        </ul>
-      </div>
+    <div class="resultado" style="max-width: 600px; margin: 0 auto;">
+  
+    <ul id="matching" >
+      <li style="border-bottom: 1px solid #ccc;">Resultados de la Busqueda</li>
+     
+         
+      
+    </ul>
+  
+</div>
+
 
     </div>
+    
 
   </div>
 
   <script>
-    function redirectToForm() {
-      window.location.href = "FormularioInicioSesion.php";
-    }
+  
+  
+  function BuscarEjercicio() {
+  // Obtener el término de búsqueda del input
+  var searchTerm = document.querySelector('.search-input').value;
 
-    function redirectToRegistration() {
-      window.location.href = "FormularioRegistro.php";
+  // Mostrar el mensaje emergente de búsqueda en progreso
+  var loadingPopup = document.getElementById('loading-popup');
+  loadingPopup.style.display = 'block';
+
+  // Realizar la petición al archivo PHP utilizando AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'RegistroEjerciciosFuerza.php?searchTerm=' + searchTerm, true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      // Ocultar el mensaje emergente de búsqueda en progreso
+      loadingPopup.style.display = 'none';
+
+      // Parsear la respuesta JSON
+      var resultados = JSON.parse(xhr.responseText);
+
+      // Obtener la lista donde se mostrarán los resultados
+      var matchingList = document.getElementById('matching');
+
+      // Limpiar la lista antes de mostrar los nuevos resultados
+      matchingList.innerHTML = '';
+
+      // Mostrar los resultados en la lista
+      if (resultados.length > 0) {
+        // Mostrar los resultados
+        for (var i = 0; i < resultados.length; i++) {
+          var ejercicio = resultados[i];
+
+          var listItem = document.createElement('li');
+
+          var nombreEjercicio = document.createElement('span');
+          nombreEjercicio.textContent = ejercicio.NombreEjercicio;
+          listItem.appendChild(nombreEjercicio);
+
+          matchingList.appendChild(listItem);
+        }
+      } else {
+        var listItem = document.createElement('li');
+        listItem.textContent = 'No se encontraron resultados.';
+        matchingList.appendChild(listItem);
+      }
     }
-    function redirectToAlimentacion() {
-      window.location.href = "PaginaAlimentacion.php";
-    }
-    function redirectToEjercicio() {
-      window.location.href = "PaginaEjercicio.php";
-    }
+  };
+  xhr.send();
+}
+
+
+function actualizarTabla(alimento) {
+ 
+
+// Obtener el array de alimentos seleccionados del localStorage
+var alimentosSeleccionados = JSON.parse(localStorage.getItem('alimentosSeleccionados')) || [];
+
+// Crear un objeto con la información del alimento seleccionado
+var alimentoSeleccionado = {
+  nombre: alimento.NombreAlimento,
+  calorias: alimento.Calorias_100g,
+  carbohidratos: alimento.Carbohidratos_100g,
+  grasas: alimento.Grasas_100g,
+  proteinas: alimento.Proteinas_100g
+};
+
+// Agregar el objeto al array de alimentos seleccionados
+alimentosSeleccionados.push(alimentoSeleccionado);
+
+// Guardar el array actualizado en el localStorage
+localStorage.setItem('alimentosSeleccionados', JSON.stringify(alimentosSeleccionados));
+
+
+  // Redireccionar a la página de alimentación
+  window.location.href = 'PaginaAlimentacion.php';
+}
+
+
+
+
+    
+    
+
+  
   </script>
 </body>
 </html>
