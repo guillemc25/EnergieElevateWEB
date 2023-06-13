@@ -279,7 +279,17 @@ require_once "BuscarEjerciciosFuerza.php";
 
           var nombreEjercicio = document.createElement('span');
           nombreEjercicio.textContent = ejercicio.NombreEjercicio;
+          nombreEjercicio.classList.add('nombre-ejercicio');
+          nombreEjercicio.addEventListener('click', crearEventoClic(ejercicio));
+          // Agregar estilos para indicar que es clickeable
+          nombreEjercicio.style.cursor = 'pointer';
+          nombreEjercicio.style.textDecoration = 'underline';
+          nombreEjercicio.style.color = '#007BFF'; // Color azul fuerte
           listItem.appendChild(nombreEjercicio);
+
+          var grupoMuscular = document.createElement('span');
+          grupoMuscular.textContent = ejercicio.GrupoMuscular;
+          listItem.appendChild(grupoMuscular);
 
           matchingList.appendChild(listItem);
         }
@@ -293,6 +303,13 @@ require_once "BuscarEjerciciosFuerza.php";
   xhr.send();
 }
 
+function crearEventoClic(ejercicio) {
+  return function() {
+    // Lógica a ejecutar cuando se hace clic en el nombre del ejercicio
+    // Por ejemplo, redireccionar a una página específica o mostrar más detalles
+    alert('Hiciste clic en el ejercicio: ' + ejercicio.NombreEjercicio);
+  };
+}
 
 function actualizarTabla(alimento) {
  
