@@ -238,6 +238,20 @@ session_start();
       text-decoration: none;
     }
 
+    tr.Ejercicio-existente {
+    background-color: #ffeecc;
+    color: #333;
+  }
+
+  tr.Ejercicio-existente:hover {
+    background-color: #ffcc99;
+  }
+
+  tr.Ejercicio-existente td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
     
 
 </style>
@@ -276,13 +290,7 @@ session_start();
   </nav>
   <div class="EjerciciosCardiovasculares">
     <table class="table0" id="cardio-diary">
-      <colgroup>
-        <col class="col-1">
-        <col class="col-2">
-        <col class="col-2">
-        <col class="col-4">
-      </colgroup>
-
+  
       <thead>
         <tr>
           <td class="first">Cardiovascular</td>
@@ -335,9 +343,92 @@ session_start();
       </tbody>
     </table>
   </div>
+</div>
+</div>
 
+<script>
   
-</div>
-</div>
+  var tbody = document.querySelector('#cardio-diary tbody');
+var filaBottom = document.querySelector('#cardio-diary .bottom');
+
+// Obtener el array de alimentos seleccionados del localStorage
+var ejerciciosSeleccionados = JSON.parse(localStorage.getItem('ejerciciosSeleccionados')) || [];
+
+if (ejerciciosSeleccionados.length === 0) {
+  // No hay alimentos seleccionados, no se crea ninguna fila en la tabla
+  localStorage.removeItem('ejerciciosSeleccionados');
+} else {
+
+  // Recorrer el array de alimentos seleccionados y crear una fila por cada alimento
+  for (var i = 0; i < ejerciciosSeleccionados.length; i++) {
+
+   
+    var ejercicio =  ejerciciosSeleccionados[i];
+    
+    // Crear una nueva fila con los datos del alimento seleccionado
+    var nuevaFila = document.createElement('tr');
+    nuevaFila.classList.add('Ejercicio-existente');
+    
+    var celdaNombre = document.createElement('td');
+    celdaNombre.innerHTML = ejercicio.nombre;
+    var celdaMinutos = document.createElement('td');
+    celdaMinutos.innerHTML = ejercicio.minutos;
+    var celdaCalorias = document.createElement('td');
+    celdaCalorias.innerHTML = ejercicio.calorias;
+    var celdaEliminar = document.createElement('td');
+
+
+    var botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar';
+  
+    // Obtener el índice del alimento en el array
+    var indice = i; 
+
+    botonEliminar.setAttribute('data-indice', indice);
+
+    celdaEliminar.appendChild(botonEliminar);
+
+    // Agregar las celdas a la nueva fila
+    nuevaFila.appendChild(celdaNombre);
+    nuevaFila.appendChild(celdaMinutos);
+    nuevaFila.appendChild(celdaCalorias);
+    nuevaFila.appendChild(celdaEliminar);
+   
+    
+    // Insertar la nueva fila antes de la fila "bottom"
+    tbody.insertBefore(nuevaFila, filaBottom);
+
+    botonEliminar.addEventListener('click', function() {
+      // Obtener la fila a la que pertenece el botón eliminar
+  var filaEliminar = this.closest('tr');
+  
+  // Obtener el índice del alimento a eliminar desde el atributo personalizado
+  var indice = parseInt(this.getAttribute('data-indice'));
+  
+  // Obtener el alimento a eliminar
+  var alimentoEliminar = ejerciciosSeleccionados[indice];
+  
+  
+  // Eliminar el alimento del array de alimentos seleccionados
+  ejerciciosSeleccionados.splice(indice, 1);
+  
+  // Actualizar el array en el localStorage
+  localStorage.setItem('ejerciciosSeleccionados', JSON.stringify(ejerciciosSeleccionados));
+
+  // Eliminar la fila de la tabla
+  filaEliminar.remove();
+
+  // Verificar si es el último alimento y eliminarlo del localStorage
+  if (alimentosSeleccionadosCena.length === 0) {
+    localStorage.removeItem('alimentosSeleccionadosCena');
+  }
+    });
+
+  }
+
+}
+
+
+</script>
 </body>
 </html>

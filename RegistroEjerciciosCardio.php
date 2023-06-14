@@ -14,8 +14,9 @@ require_once "BuscarEjercicios.php";
   <title>EnergieElevate</title>
   <link rel="stylesheet" href="EstilosInicio.css"> <!-- Agrega el enlace al archivo CSS -->
   <!-- Agrega el enlace al archivo de Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/css/bootstrap.min.css">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- CDN del archivo JavaScript de jQuery -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script> <!-- CDN del archivo JavaScript de Bootstrap -->
 
   
   <style>
@@ -168,10 +169,84 @@ require_once "BuscarEjercicios.php";
 .nombre-alimento:hover {
   color: darkblue; /* Cambia el color al pasar el cursor por encima del nombre */
 }
+.modal-dialog.modal-dialog-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 20px;
+  }
+
+   /* Estilos personalizados para la ventana modal */
+
+  /* Estilo para el título del modal */
+  .modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* Estilo para el contenido del modal */
+  .modal-body {
+    padding: 20px;
+  }
+
+  /* Estilo para los campos de entrada en el modal */
+  .form-control {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  /* Estilo para los botones en el modal */
+  .modal-footer .btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    margin-top:10px;
+  }
+
+  /* Estilo para el botón de cierre del modal */
+  #closeButton {
+    background-color: #ccc;
+    border-color: #ccc;
+  }
+
+  /* Estilo para el botón de añadir ejercicio del modal */
+  #addExerciseButton {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  /* Estilo para resaltar el botón al pasar el cursor sobre él */
+  .modal-footer .btn:hover {
+    opacity: 0.8;
+  }
+
+ 
+.column {
+  display: flex;
+  margin-bottom: 20px;
+ 
+}
+
+.AlimentosBusqueda{
+  flex: 1;
+}
+.ejercicioModal{
+  flex:1;
+
+
+}
+
   </style>
 </head>
 <body>
-  <div class="container">
+
+
+  <div class="container" style="position: relative;">
     <header>
       <div>
         <a href="MiPaginaInicio.php" class="logo"><img src="logo.png" alt="Logo de Mi Sitio Web"></a>
@@ -201,48 +276,107 @@ require_once "BuscarEjercicios.php";
         </li>
       </ul>
     </nav>
+
+    <div class="column">
     <div class="AlimentosBusqueda" style="  max-width: 600px; padding: 5px; border: 2px solid #ccc;  margin: 0 auto;">
 
-    <div class="Busqueda" style="text-align: center; margin-top: 20px;">
-      <h1 class="main-title" style="max-width: 600px; margin: 0 auto;">Añadir Ejercicio de cardio</h1>
-      <h1 class="secondary-title">Búsqueda en nuestra base de datos de Ejercicios por nombre:</h1>
-      
-    </div>
-
-    <div class="search-bar" style="margin-top: 50px; text-align: center;">
-      <input type="text" class="search-input" placeholder="Buscar">
-      <button onclick="BuscarEjercicio()" class="search-button">Búsqueda</button>
-      
-    </div>
-    <div id="loading-popup" style="display: none; margin-top: 10px; text-align: center;">
-    <h2>Buscando ejercicios...</h2>
-  </div>
-
-    <div class="block-4">
-      <div id="sort-block">
-        <h1 class="secondary-title search_">Ejercicios coincidentes:</h1>
-      </div>
-      
-    </div>
-    <div class="resultado" style="max-width: 600px; margin: 0 auto;">
-  
-    <ul id="matching" >
-      <li style="border-bottom: 1px solid #ccc;">Resultados de la Busqueda</li>
-     
-         
-      
-    </ul>
+<div class="Busqueda" style="text-align: center; margin-top: 20px;">
+  <h1 class="main-title" style="max-width: 600px; margin: 0 auto;">Añadir Ejercicio de cardio</h1>
+  <h1 class="secondary-title">Búsqueda en nuestra base de datos de Ejercicios por nombre:</h1>
   
 </div>
 
+<div class="search-bar" style="margin-top: 50px; text-align: center;">
+  <input type="text" class="search-input" placeholder="Buscar">
+  <button onclick="BuscarEjercicio()" class="search-button">Búsqueda</button>
+  
+</div>
+<div id="loading-popup" style="display: none; margin-top: 10px; text-align: center;">
+<h2>Buscando ejercicios...</h2>
+</div>
 
+<div class="block-4">
+  <div id="sort-block">
+    <h1 class="secondary-title search_">Ejercicios coincidentes:</h1>
+  </div>
+  
+</div>
+<div class="resultado" style="max-width: 600px; margin: 0 auto;">
+
+<ul id="matching" >
+  <li style="border-bottom: 1px solid #ccc;">Resultados de la Busqueda</li>
+ 
+     
+  
+</ul>
+
+</div>
+
+  <!-- Ventana modal -->
+  <div id="ejercicioModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="ejercicioModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h1 class="modal-title" id="ejercicioModalLabel"></h1>
+        
+      </div>
+      <div class="modal-body">
+        <div id="modalContent" style="display: none;">
+          <div class="form-group">
+            <label for="minutesInput">Minutos:</label>
+            <input type="number" class="form-control" id="minutesInput" placeholder="Introduce los minutos">
+          </div>
+          <div class="form-group">
+            <label for="caloriesInput">Calorías:</label>
+            <input type="number" class="form-control" id="caloriesInput" placeholder="Introduce las calorías">
+          </div>
+        </div>
+        <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeButton" style="display: none;">Cerrar</button>
+      <button type="button" class="btn btn-primary" id="addExerciseButton" style="display: none;">Añadir Ejercicio</button>
+      </div>
+     
+      
+
+      </div>
     </div>
-    
-
   </div>
 
+        </div>
+    
+
+
+    </div>
+
+ 
+</div>
+
+
   <script>
+
+// Variable global para almacenar las calorías por minuto del ejercicio seleccionado
+var caloriesPerMinute = 0; 
+   
+//acciones a hacer del boton ceerar de la ventana modal
+document.getElementById('closeButton').addEventListener('click', function() {
+
+  var modalTitle = document.getElementById('ejercicioModalLabel');
+    modalTitle.textContent = '';
+
+  // Mostrar el contenido de la ventana modal
+  var modalContent = document.getElementById('modalContent');
+    modalContent.style.display = 'none';
+
+     // Mostrar los botones de la ventana modal
+    document.getElementById('closeButton').style.display = 'none';
+    document.getElementById('addExerciseButton').style.display = 'none';
   
+});
+
+// ...
+
+  // Usa noConflict para evitar conflictos con otras bibliotecas
+  var $j = jQuery.noConflict();
   
   function BuscarEjercicio() {
   // Obtener el término de búsqueda del input
@@ -305,48 +439,66 @@ require_once "BuscarEjercicios.php";
 
 function crearEventoClic(ejercicio) {
   return function() {
-    // Lógica a ejecutar cuando se hace clic en el nombre del ejercicio
-    // Por ejemplo, redireccionar a una página específica o mostrar más detalles
-    alert('Hiciste clic en el ejercicio: ' + ejercicio.NombreEjercicio);
+    // Rellenar la ventana modal con los datos del ejercicio
+    var modalTitle = document.getElementById('ejercicioModalLabel');
+    modalTitle.textContent = ejercicio.NombreEjercicio;
+
+    // Mostrar el contenido de la ventana modal
+    var modalContent = document.getElementById('modalContent');
+    modalContent.style.display = 'block';
+
+     // Mostrar los botones de la ventana modal
+    document.getElementById('closeButton').style.display = 'inline-block';
+    document.getElementById('addExerciseButton').style.display = 'inline-block';
+
+    caloriesPerMinute = ejercicio.Calorias_Minuto;
+
+     // Actualizar las calorías al cambiar el valor de los minutos
+     document.getElementById('minutesInput').addEventListener('input', function() {
+      var minutes = parseInt(this.value, 10);
+      var calories = minutes * caloriesPerMinute;
+      document.getElementById('caloriesInput').value = calories;
+    });
+
+    //añadir ejercicio al localstorage para guardarlo en la tabla
+
+    document.getElementById('addExerciseButton').addEventListener('click', function() {
+
+      
+  // Obtener los valores del nombre, minutos y calorías
+  var nombre = document.getElementById('ejercicioModalLabel').textContent;
+  var minutos = parseInt(document.getElementById('minutesInput').value, 10);
+  var calorias = parseInt(document.getElementById('caloriesInput').value, 10);
+
+  // Obtener el array de ejercicios seleccionados del localStorage
+  var ejerciciosSeleccionados = JSON.parse(localStorage.getItem('ejerciciosSeleccionados')) || [];
+
+// Crear un objeto para el ejercicio
+var ejercicio = {
+  nombre: nombre,
+  minutos: minutos,
+  calorias: calorias
+};
+
+
+// Agregar el objeto al array de ejercicios seleccionados
+ejerciciosSeleccionados.push(ejercicio);
+
+// Guardar el array actualizado en el localStorage
+localStorage.setItem('ejerciciosSeleccionados', JSON.stringify(ejerciciosSeleccionados));
+
+
+  // Restablecer los campos de entrada
+  document.getElementById('minutesInput').value = '';
+  document.getElementById('caloriesInput').value = '';
+
+  window.location.href = 'PaginaEjercicio.php';
+});
+
+
   };
 }
 
-
-
-
-function actualizarTabla(alimento) {
- 
-
-// Obtener el array de alimentos seleccionados del localStorage
-var alimentosSeleccionados = JSON.parse(localStorage.getItem('alimentosSeleccionados')) || [];
-
-// Crear un objeto con la información del alimento seleccionado
-var alimentoSeleccionado = {
-  nombre: alimento.NombreAlimento,
-  calorias: alimento.Calorias_100g,
-  carbohidratos: alimento.Carbohidratos_100g,
-  grasas: alimento.Grasas_100g,
-  proteinas: alimento.Proteinas_100g
-};
-
-// Agregar el objeto al array de alimentos seleccionados
-alimentosSeleccionados.push(alimentoSeleccionado);
-
-// Guardar el array actualizado en el localStorage
-localStorage.setItem('alimentosSeleccionados', JSON.stringify(alimentosSeleccionados));
-
-
-  // Redireccionar a la página de alimentación
-  window.location.href = 'PaginaAlimentacion.php';
-}
-
-
-
-
-    
-    
-
-  
   </script>
 </body>
 </html>

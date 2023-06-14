@@ -800,7 +800,7 @@ if (alimentosSeleccionadosCena.length === 0) {
     botonEliminar.textContent = 'Eliminar';
     
     // Obtener el índice del alimento en el array
-    var indice = i;
+    var indice = i; 
 
     botonEliminar.setAttribute('data-indice', indice);
     
