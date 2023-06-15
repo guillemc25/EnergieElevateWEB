@@ -234,8 +234,7 @@ require_once "conexion.php";
           <div class="info-alimentos-ejercicio">
             <p class="numEjercicios">0</p>
             <p>Ejercicios</p>
-            <p class="NumAlimentos">0</p>
-            <p>Alimentos</p>
+           
           </div>
         </div>
         <div class="botones-acciones">
@@ -260,6 +259,21 @@ require_once "conexion.php";
   for (var i = 0; i < caloriasConsumidasElements.length; i++) {
     caloriasConsumidasElements[i].textContent = totalCaloriasGuardadas || "0";
   }
+
+  //CALORIAS QUEMADAS
+
+   // Recuperar el valor almacenado en localStorage
+   var totalCaloriasQuemadas = localStorage.getItem("totalCaloriasQuemadas");
+
+// Actualizar el contenido del elemento <p> con el valor recuperado
+var caloriasQuemadasElements = document.getElementsByClassName("cantidad-Quemadas");
+caloriasQuemadasElements.textContent = totalCaloriasQuemadas || "0"; // Si no hay valor guardado, muestra "0"
+
+
+ // Actualizar el contenido de todos los elementos en la lista
+for (var i = 0; i < caloriasQuemadasElements.length; i++) {
+  caloriasQuemadasElements[i].textContent = totalCaloriasQuemadas|| "0";
+}
 
 
 

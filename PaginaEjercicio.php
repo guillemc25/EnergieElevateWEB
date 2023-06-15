@@ -348,6 +348,7 @@ session_start();
 
 <script>
   
+  var TotalCaloriasQuemadas=0;
   var tbody = document.querySelector('#cardio-diary tbody');
 var filaBottom = document.querySelector('#cardio-diary .bottom');
 
@@ -405,9 +406,14 @@ if (ejerciciosSeleccionados.length === 0) {
   // Obtener el índice del alimento a eliminar desde el atributo personalizado
   var indice = parseInt(this.getAttribute('data-indice'));
   
-  // Obtener el alimento a eliminar
-  var alimentoEliminar = ejerciciosSeleccionados[indice];
+  // Obtener el ejercicio a eliminar
+  var ejerciciosEliminar = ejerciciosSeleccionados[indice];
   
+   // Restar las calorías del ejercicio eliminado de la variable totalCaloriasQuemadas
+   TotalCaloriasQuemadas -= ejerciciosEliminar.calorias;
+
+// Actualizar el valor de totalCaloriasQuemadas en el localStorage
+localStorage.setItem('totalCaloriasQuemadas', TotalCaloriasQuemadas.toString());
   
   // Eliminar el alimento del array de alimentos seleccionados
   ejerciciosSeleccionados.splice(indice, 1);
@@ -419,14 +425,25 @@ if (ejerciciosSeleccionados.length === 0) {
   filaEliminar.remove();
 
   // Verificar si es el último alimento y eliminarlo del localStorage
-  if (alimentosSeleccionadosCena.length === 0) {
-    localStorage.removeItem('alimentosSeleccionadosCena');
+  if (ejerciciosSeleccionados.length === 0) {
+    localStorage.removeItem('ejerciciosSeleccionados');
   }
     });
 
   }
 
 }
+
+function sumarCaloriasQuemadas(ejercicios) {
+  for (var i = 0; i < ejercicios.length; i++) {
+    TotalCaloriasQuemadas += ejercicios[i].calorias;
+  }
+}
+
+sumarCaloriasQuemadas(ejerciciosSeleccionados)
+
+// Guardar el total de calorías en el localStorage
+localStorage.setItem("totalCaloriasQuemadas", TotalCaloriasQuemadas.toString());
 
 
 </script>
