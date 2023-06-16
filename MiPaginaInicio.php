@@ -275,6 +275,22 @@ for (var i = 0; i < caloriasQuemadasElements.length; i++) {
   caloriasQuemadasElements[i].textContent = totalCaloriasQuemadas|| "0";
 }
 
+//CALORIAS QUEMADAS
+
+   // Recuperar el valor almacenado en localStorage
+   var TotalEjercicios = localStorage.getItem("totalEjercicios");
+
+// Actualizar el contenido del elemento <p> con el valor recuperado
+var TotalEjerciciosElement = document.getElementsByClassName("numEjercicios");
+TotalEjerciciosElement.textContent = TotalEjercicios || "0"; // Si no hay valor guardado, muestra "0"
+
+
+ // Actualizar el contenido de todos los elementos en la lista
+for (var i = 0; i < TotalEjerciciosElement.length; i++) {
+  TotalEjerciciosElement[i].textContent = TotalEjercicios|| "0";
+}
+
+
 
 
 

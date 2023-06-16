@@ -38,7 +38,7 @@ require_once "BuscarEjercicios.php";
       border-radius: 4px;
       color: #fff;
       background-color: #007bff;
-      border-color: #007bff;
+    border-color: #007bff;
       text-decoration: none;
       margin-right: 10px;
     }

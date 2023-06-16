@@ -25,7 +25,8 @@ session_start();
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
-  background-color: #3498db;
+  background-color: #007bff;
+    border-color: #007bff;
   color: #fff;
   text-decoration: none;
   margin-right: 250px;
@@ -250,7 +251,10 @@ session_start();
   tr.Ejercicio-existente td {
     border: 1px solid #ccc;
     padding: 8px;
+
   }
+
+
 
     
 
@@ -314,14 +318,7 @@ session_start();
   </div>
 
   <div class="EjerciciosFuerza">
-    <table class="table0" id="cardio-diary">
-      <colgroup>
-        <col class="col-1">
-        <col class="col-2">
-        <col class="col-2">
-        <col class="col-4">
-      </colgroup>
-
+    <table class="table0" id="stregth-diary">
       <thead>
         <tr>
           <td class="first">Ejercicios de fuerza</td>
@@ -332,7 +329,7 @@ session_start();
       </thead>
 
       <tbody>
-        <tr class="bottom">
+        <tr class="Fuerza">
           <td class="first">
             <a class="add_exercise" href="RegistroEjerciciosFuerza.php">Añadir</a>
           </td>
@@ -434,11 +431,124 @@ localStorage.setItem('totalCaloriasQuemadas', TotalCaloriasQuemadas.toString());
 
 }
 
+var TotalCaloriasQuemadas=0;
+  var tbody = document.querySelector('#stregth-diary tbody');
+var filaBottom = document.querySelector('#stregth-diary .Fuerza');
+
+// Obtener el array de alimentos seleccionados del localStorage
+var ejerciciosSeleccionadosFuerza = JSON.parse(localStorage.getItem('ejerciciosSeleccionadosFuerza')) || [];
+
+if (ejerciciosSeleccionados.length === 0) {
+  // No hay alimentos seleccionados, no se crea ninguna fila en la tabla
+  localStorage.removeItem('ejerciciosSeleccionadosFuerza');
+} else {
+
+  // Recorrer el array de alimentos seleccionados y crear una fila por cada alimento
+  for (var i = 0; i < ejerciciosSeleccionadosFuerza.length; i++) {
+
+   
+    var ejercicio =  ejerciciosSeleccionadosFuerza[i];
+    
+    // Crear una nueva fila con los datos del alimento seleccionado
+    var nuevaFila = document.createElement('tr');
+    nuevaFila.classList.add('Ejercicio-existente');
+    
+    var celdaNombre = document.createElement('td');
+    celdaNombre.innerHTML = ejercicio.nombre;
+    var celdaSeries = document.createElement('td');
+    celdaSeries.innerHTML = ejercicio.series;
+    var celdaRepeticiones= document.createElement('td');
+    celdaRepeticiones.innerHTML = ejercicio.repeticiones;
+    var celdaPeso= document.createElement('td');
+    celdaPeso.innerHTML = ejercicio.peso;
+    var celdaEliminar = document.createElement('td');
+
+
+    var botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar';
+  
+    // Obtener el índice del alimento en el array
+    var indice = i; 
+
+    botonEliminar.setAttribute('data-indice', indice);
+
+    celdaEliminar.appendChild(botonEliminar);
+
+    // Agregar las celdas a la nueva fila
+    nuevaFila.appendChild(celdaNombre);
+    nuevaFila.appendChild(celdaSeries);
+    nuevaFila.appendChild(celdaRepeticiones);
+    nuevaFila.appendChild(celdaPeso);
+    nuevaFila.appendChild(celdaEliminar);
+   
+    
+    // Insertar la nueva fila antes de la fila "bottom"
+    tbody.insertBefore(nuevaFila, filaBottom);
+
+    botonEliminar.addEventListener('click', function() {
+      // Obtener la fila a la que pertenece el botón eliminar
+  var filaEliminar = this.closest('tr');
+  
+  // Obtener el índice del alimento a eliminar desde el atributo personalizado
+  var indice = parseInt(this.getAttribute('data-indice'));
+  
+  // Obtener el ejercicio a eliminar
+  var ejerciciosEliminar = ejerciciosSeleccionadosFuerza[indice];
+  
+  
+  // Eliminar el alimento del array de ejercicios seleccionados
+  ejerciciosSeleccionadosFuerza.splice(indice, 1);
+  
+  // Actualizar el array en el localStorage
+  localStorage.setItem('ejerciciosSeleccionadosFuerza', JSON.stringify(ejerciciosSeleccionadosFuerza));
+
+  // Eliminar la fila de la tabla
+  filaEliminar.remove();
+
+  // Verificar si es el último alimento y eliminarlo del localStorage
+  if (ejerciciosSeleccionadosFuerza.length === 0) {
+    localStorage.removeItem('ejerciciosSeleccionadosFuerza');
+  }
+    });
+
+  }
+
+}
+
+
 function sumarCaloriasQuemadas(ejercicios) {
   for (var i = 0; i < ejercicios.length; i++) {
     TotalCaloriasQuemadas += ejercicios[i].calorias;
   }
 }
+
+function contarEjerciciosSeleccionados() {
+  var totalEjercicios = 0;
+
+  // Obtener el array de ejercicios seleccionados de cardio del localStorage
+  var ejerciciosSeleccionados = JSON.parse(localStorage.getItem('ejerciciosSeleccionados')) || [];
+
+  // Sumar la cantidad de ejercicios cardio
+  totalEjercicios += ejerciciosSeleccionados.length;
+
+  // Obtener el array de ejercicios seleccionados de fuerza del localStorage
+  var ejerciciosSeleccionadosFuerza = JSON.parse(localStorage.getItem('ejerciciosSeleccionadosFuerza')) || [];
+
+  // Sumar la cantidad de ejercicios de fuerza
+  totalEjercicios += ejerciciosSeleccionadosFuerza.length;
+
+  // Mostrar la cantidad total de ejercicios
+  console.log('Total de ejercicios: ' + totalEjercicios);
+
+  // Guardar el total de ejercicios en el localStorage
+  localStorage.setItem('totalEjercicios', totalEjercicios.toString());
+
+  // Retornar la cantidad total de ejercicios
+  return totalEjercicios;
+}
+
+contarEjerciciosSeleccionados()
+
 
 sumarCaloriasQuemadas(ejerciciosSeleccionados)
 
